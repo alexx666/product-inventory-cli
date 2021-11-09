@@ -2,6 +2,8 @@ package com.alexx666.cqrs;
 
 import com.alexx666.cli.CommandHandler;
 import com.alexx666.cli.CommandParser;
+
+import com.alexx666.core.products.ProductsCommandHandler;
 import com.alexx666.cqrs.products.AddNewProductHandler;
 import com.alexx666.core.products.Commands.Domain.ProductRepository;
 import com.alexx666.core.products.Commands.Infrastructure.InMemoryProductRepository;
@@ -18,6 +20,7 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         ProductRepository repository = new InMemoryProductRepository(new HashMap<>());
+        ProductsCommandHandler handlers = new ProductsCommandHandler(repository);
 
         CommandParser resolver = new CommandParser()
                 .register("rate", RateProductHandler.class)
@@ -30,9 +33,9 @@ public class Main {
 
                 Constructor<? extends CommandHandler> constructor = resolver
                         .getHandler(command)
-                        .getConstructor(ProductRepository.class, BufferedReader.class);
+                        .getConstructor(ProductsCommandHandler.class, BufferedReader.class);
 
-                CommandHandler parser = constructor.newInstance(repository, reader);
+                CommandHandler parser = constructor.newInstance(handlers, reader);
 
                 parser.handle();
             } catch (Exception error) {

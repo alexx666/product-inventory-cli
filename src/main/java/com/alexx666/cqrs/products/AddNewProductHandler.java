@@ -3,14 +3,18 @@ package com.alexx666.cqrs.products;
 import com.alexx666.cli.CommandHandler;
 
 import com.alexx666.core.products.Commands.Application.AddNewProduct;
-import com.alexx666.core.products.Commands.Domain.ProductRepository;
+import com.alexx666.core.products.ProductsCommandHandler;
 
 import java.io.BufferedReader;
 
 public class AddNewProductHandler extends CommandHandler {
 
-    public AddNewProductHandler(ProductRepository repository, BufferedReader reader) {
-        super(repository, reader);
+    private ProductsCommandHandler handlers;
+
+    public AddNewProductHandler(ProductsCommandHandler handlers, BufferedReader reader) {
+        super(reader);
+
+        this.handlers = handlers;
     }
 
     @Override

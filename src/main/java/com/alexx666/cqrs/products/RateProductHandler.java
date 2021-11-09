@@ -1,14 +1,19 @@
 package com.alexx666.cqrs.products;
 
 import com.alexx666.cli.CommandHandler;
+
 import com.alexx666.core.products.Commands.Application.RateProduct;
-import com.alexx666.core.products.Commands.Domain.ProductRepository;
+import com.alexx666.core.products.ProductsCommandHandler;
 
 import java.io.BufferedReader;
 
 public class RateProductHandler extends CommandHandler {
-    public RateProductHandler(ProductRepository repository, BufferedReader reader) {
-        super(repository, reader);
+
+    private ProductsCommandHandler handlers;
+
+    public RateProductHandler(ProductsCommandHandler handlers, BufferedReader reader) {
+        super(reader);
+        this.handlers = handlers;
     }
 
     @Override
