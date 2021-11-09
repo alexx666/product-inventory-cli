@@ -4,6 +4,7 @@ import com.alexx666.core.products.Commands.Domain.Product;
 import com.alexx666.core.products.Commands.Domain.ProductRepository;
 import com.alexx666.core.utils.Hashing;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class InMemoryProductRepository implements ProductRepository {
@@ -12,6 +13,10 @@ public class InMemoryProductRepository implements ProductRepository {
 
     public InMemoryProductRepository(Map<String, Product> products) {
         this.products = products;
+    }
+
+    public InMemoryProductRepository() {
+        this(new HashMap<>());
     }
 
     @Override
