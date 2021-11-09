@@ -15,5 +15,5 @@ public abstract class CommandHandler {
           this.handlers = new ProductsCommandHandler(repository);
      }
 
-     public abstract  void handle() throws Exception;
+     public abstract void handle() throws Exception;
 }

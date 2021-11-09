@@ -22,7 +22,8 @@ public class Application {
                 System.out.print("Action (add/rate): ");
                 String command = reader.readLine();
 
-                Constructor<? extends CommandHandler> constructor = resolver.getHandler(command)
+                Constructor<? extends CommandHandler> constructor = resolver
+                        .getHandler(command)
                         .getConstructor(ProductRepository.class, BufferedReader.class);
 
                 CommandHandler parser = constructor.newInstance(repository, reader);
