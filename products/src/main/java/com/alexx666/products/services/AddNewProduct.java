@@ -1,6 +1,6 @@
-package com.alexx666.core.products.Commands.Application;
+package com.alexx666.products.services;
 
-import com.alexx666.core.utils.Command;
+import com.alexx666.core.Command;
 
 public class AddNewProduct extends Command {
 

@@ -1,4 +1,4 @@
-package com.alexx666.core.products.Queries;
+package com.alexx666.products.domain;
 
 import java.util.Collection;
 

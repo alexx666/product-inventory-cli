@@ -1,8 +1,8 @@
-package com.alexx666.core.products.Commands.Infrastructure;
+package com.alexx666.products.infra;
 
-import com.alexx666.core.products.Commands.Domain.Product;
-import com.alexx666.core.products.Commands.Domain.ProductRepository;
-import com.alexx666.core.utils.Hashing;
+import com.alexx666.core.Hashing;
+import com.alexx666.products.domain.Product;
+import com.alexx666.products.domain.ProductRepository;
 
 import java.util.HashMap;
 import java.util.Map;

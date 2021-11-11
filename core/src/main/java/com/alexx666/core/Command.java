@@ -1,4 +1,4 @@
-package com.alexx666.core.utils;
+package com.alexx666.core;
 
 public abstract class Command {
 

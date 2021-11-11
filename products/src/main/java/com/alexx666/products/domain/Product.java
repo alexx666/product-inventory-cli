@@ -1,4 +1,4 @@
-package com.alexx666.core.products.Commands.Domain;
+package com.alexx666.products.domain;
 
 import java.util.HashMap;
 import java.util.Map;

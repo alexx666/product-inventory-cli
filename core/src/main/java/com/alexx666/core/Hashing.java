@@ -1,4 +1,4 @@
-package com.alexx666.core.utils;
+package com.alexx666.core;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;

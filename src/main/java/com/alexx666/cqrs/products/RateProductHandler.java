@@ -1,9 +1,9 @@
 package com.alexx666.cqrs.products;
 
-import com.alexx666.cli.CommandHandler;
+import com.alexx666.cqrs.utils.CommandHandler;
 
-import com.alexx666.core.products.Commands.Application.RateProduct;
-import com.alexx666.core.products.ProductsCommandHandler;
+import com.alexx666.products.ProductsCommandHandler;
+import com.alexx666.products.services.RateProduct;
 
 import java.io.BufferedReader;
 

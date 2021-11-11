@@ -1,9 +1,9 @@
-package com.alexx666.core.products;
+package com.alexx666.products;
 
-import com.alexx666.core.products.Commands.Application.AddNewProduct;
-import com.alexx666.core.products.Commands.Domain.Product;
-import com.alexx666.core.products.Commands.Application.RateProduct;
-import com.alexx666.core.products.Commands.Domain.ProductRepository;
+import com.alexx666.products.services.AddNewProduct;
+import com.alexx666.products.domain.Product;
+import com.alexx666.products.services.RateProduct;
+import com.alexx666.products.domain.ProductRepository;
 
 public class ProductsCommandHandler {
 

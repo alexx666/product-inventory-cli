@@ -1,4 +1,4 @@
-package com.alexx666.cli;
+package com.alexx666.cqrs.utils;
 
 import java.io.BufferedReader;
 

@@ -1,14 +1,12 @@
 package com.alexx666.cqrs;
 
-import com.alexx666.cli.CommandHandler;
-import com.alexx666.cli.CommandParser;
-
-import com.alexx666.core.products.ProductsCommandHandler;
-import com.alexx666.core.products.Commands.Domain.ProductRepository;
-import com.alexx666.core.products.Commands.Infrastructure.InMemoryProductRepository;
-
+import com.alexx666.cqrs.utils.CommandHandler;
+import com.alexx666.cqrs.utils.CommandParser;
 import com.alexx666.cqrs.products.AddNewProductHandler;
 import com.alexx666.cqrs.products.RateProductHandler;
+import com.alexx666.products.ProductsCommandHandler;
+import com.alexx666.products.domain.ProductRepository;
+import com.alexx666.products.infra.InMemoryProductRepository;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
