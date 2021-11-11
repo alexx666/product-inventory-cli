@@ -3,6 +3,7 @@ package com.alexx666.products.domain;
 import java.util.HashMap;
 import java.util.Map;
 
+// DDD Entity
 public class Product {
 
     private String productId;

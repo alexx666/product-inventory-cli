@@ -1,5 +1,6 @@
 package com.alexx666.products.domain;
 
+// Value Object
 public class ProductRating {
 
     public static ProductRating create(int value) throws IllegalArgumentException {

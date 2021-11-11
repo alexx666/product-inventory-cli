@@ -7,6 +7,7 @@ import com.alexx666.products.commands.RateProduct;
 
 import java.io.BufferedReader;
 
+// A run of the mill controller for a CLI context
 public class RateProductHandler extends CommandHandler {
 
     private ProductsCommandHandler handlers;
