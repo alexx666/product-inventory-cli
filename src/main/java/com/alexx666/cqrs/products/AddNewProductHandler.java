@@ -3,7 +3,7 @@ package com.alexx666.cqrs.products;
 import com.alexx666.cqrs.utils.CommandHandler;
 
 import com.alexx666.products.ProductsCommandHandler;
-import com.alexx666.products.services.AddNewProduct;
+import com.alexx666.products.commands.AddNewProduct;
 
 import java.io.BufferedReader;
 

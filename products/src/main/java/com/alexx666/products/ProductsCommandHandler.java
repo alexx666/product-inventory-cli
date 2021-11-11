@@ -1,8 +1,9 @@
 package com.alexx666.products;
 
-import com.alexx666.products.services.AddNewProduct;
+import com.alexx666.products.commands.AddNewProduct;
 import com.alexx666.products.domain.Product;
-import com.alexx666.products.services.RateProduct;
+import com.alexx666.products.commands.RateProduct;
+import com.alexx666.products.domain.ProductRating;
 import com.alexx666.products.domain.ProductRepository;
 
 public class ProductsCommandHandler {
@@ -14,14 +15,15 @@ public class ProductsCommandHandler {
     }
 
     // FIXME: use a response model to represent the result of the operation
-    public double handle(RateProduct command) throws Exception {
+    // Clean Architecture variation could be each handle in a separate class
+    public void handle(RateProduct command) throws Exception {
         Product product = this.repository.find(command.getProductId());
 
-        product.rate(command.getUserId(), command.getRating());
+        ProductRating rating = ProductRating.create(command.getRating());
+
+        product.rate(command.getUserId(), rating);
 
         this.repository.save(product);
-
-        return product.getTotalRating();
     }
 
     // FIXME: use a response model to represent the result of the operation

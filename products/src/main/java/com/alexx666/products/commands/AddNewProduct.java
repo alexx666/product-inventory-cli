@@ -1,4 +1,4 @@
-package com.alexx666.products.services;
+package com.alexx666.products.commands;
 
 import com.alexx666.core.Command;
 
@@ -6,7 +6,6 @@ public class AddNewProduct extends Command {
 
     private String name;
 
-    // TODO: convert primitives to value objects
     public AddNewProduct(String name) {
         super();
 

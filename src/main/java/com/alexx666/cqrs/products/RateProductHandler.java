@@ -3,7 +3,7 @@ package com.alexx666.cqrs.products;
 import com.alexx666.cqrs.utils.CommandHandler;
 
 import com.alexx666.products.ProductsCommandHandler;
-import com.alexx666.products.services.RateProduct;
+import com.alexx666.products.commands.RateProduct;
 
 import java.io.BufferedReader;
 
@@ -31,8 +31,8 @@ public class RateProductHandler extends CommandHandler {
 
         System.out.println("Executing request ID: " + command.getUUID());
 
-        double totalRating = handlers.handle(command);
+        handlers.handle(command);
 
-        System.out.println("Total rating: " + totalRating);
+        System.out.println("Rated product with " + command.getRating() + " stars!");
     }
 }
