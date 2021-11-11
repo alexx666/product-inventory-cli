@@ -5,7 +5,7 @@ import com.alexx666.cqrs.utils.CommandParser;
 import com.alexx666.cqrs.products.AddNewProductHandler;
 import com.alexx666.cqrs.products.RateProductHandler;
 import com.alexx666.products.ProductsCommandHandler;
-import com.alexx666.products.domain.ProductRepository;
+import com.alexx666.products.commands.ProductRepository;
 import com.alexx666.products.infra.InMemoryProductRepository;
 
 import java.io.BufferedReader;

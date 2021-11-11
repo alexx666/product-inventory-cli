@@ -1,4 +1,4 @@
-package com.alexx666.products.domain;
+package com.alexx666.products.commands;
 
 public interface ProductRepository {
     Product find(String productId) throws Exception;
