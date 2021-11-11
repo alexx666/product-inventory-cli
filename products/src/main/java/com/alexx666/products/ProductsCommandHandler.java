@@ -1,10 +1,10 @@
 package com.alexx666.products;
 
 import com.alexx666.products.commands.AddNewProduct;
-import com.alexx666.products.commands.Product;
+import com.alexx666.products.models.Product;
 import com.alexx666.products.commands.RateProduct;
-import com.alexx666.products.commands.ProductRating;
-import com.alexx666.products.commands.ProductRepository;
+import com.alexx666.products.models.ProductRating;
+import com.alexx666.products.models.ProductRepository;
 
 public class ProductsCommandHandler {
 

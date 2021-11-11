@@ -1,4 +1,4 @@
-package com.alexx666.products.commands;
+package com.alexx666.products.models;
 
 public interface ProductRepository {
     Product find(String productId) throws Exception;

@@ -1,4 +1,4 @@
-package com.alexx666.products.queries;
+package com.alexx666.products.models;
 
 // DTO object
 public class ProductDisplay {

@@ -1,4 +1,4 @@
-package com.alexx666.products.commands;
+package com.alexx666.products.models;
 
 // Value Object
 public class ProductRating {
