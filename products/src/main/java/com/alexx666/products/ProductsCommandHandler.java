@@ -1,9 +1,9 @@
 package com.alexx666.products;
 
 import com.alexx666.products.commands.AddNewProduct;
-import com.alexx666.products.models.Product;
 import com.alexx666.products.commands.RateProduct;
-import com.alexx666.products.models.ProductRepository;
+
+import com.alexx666.products.models.*;
 
 public class ProductsCommandHandler {
 
@@ -18,9 +18,10 @@ public class ProductsCommandHandler {
     public void handle(RateProduct command) throws Exception {
         Product product = this.repository.find(command.getProductId());
 
-        product.rate(command.getUserId(), command.getRating());
+        // Existence of user is responsibility of the auth service
+        UserRating userRating = product.rate(command.getUserId(), command.getRating());
 
-        this.repository.save(product);
+        this.repository.saveUserRating(userRating);
     }
 
     // FIXME: use a response model to represent the result of the operation
@@ -29,6 +30,6 @@ public class ProductsCommandHandler {
                 .withName(command.getName())
                 .build();
 
-        return this.repository.save(product);
+        return this.repository.saveProduct(product);
     }
 }

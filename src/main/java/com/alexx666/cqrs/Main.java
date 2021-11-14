@@ -1,11 +1,10 @@
 package com.alexx666.cqrs;
 
+import com.alexx666.cqrs.products.*;
 import com.alexx666.cqrs.utils.CommandHandler;
 import com.alexx666.cqrs.utils.CommandParser;
-import com.alexx666.cqrs.products.AddNewProductHandler;
-import com.alexx666.cqrs.products.RateProductHandler;
 import com.alexx666.products.ProductsCommandHandler;
-import com.alexx666.products.models.ProductRepository;
+import com.alexx666.products.ProductsQueryHandler;
 import com.alexx666.products.infra.InMemoryProductRepository;
 
 import java.io.BufferedReader;
@@ -17,25 +16,52 @@ public class Main {
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        ProductRepository repository = new InMemoryProductRepository();
-        ProductsCommandHandler handlers = new ProductsCommandHandler(repository);
+        InMemoryProductRepository database = new InMemoryProductRepository.Builder().build();
 
         CommandParser resolver = new CommandParser()
                 .register("rate", RateProductHandler.class)
-                .register("add", AddNewProductHandler.class);
+                .register("add", AddNewProductHandler.class)
+                .register("findById", FindByIdHandler.class)
+                .register("findRelated", FindRelatedProductsHandler.class)
+                .register("findOutOfStock", FindOutOfStockProductsHandler.class)
+                .register("findByName", FindByNameHandler.class);
 
-        while (true) {
+        boolean shouldTerminate = false;
+
+        while (!shouldTerminate) {
             try {
-                System.out.print("Action (add/rate): ");
+                System.out.println("Available actions:");
+
+                System.out.println("    - rate");
+                System.out.println("    - add");
+                System.out.println("    - findById");
+                System.out.println("    - findRelated");
+                System.out.println("    - findOutOfStock");
+                System.out.println("    - findByName");
+
+                System.out.print("Action: ");
+
                 String command = reader.readLine();
+
+                boolean isQuery = command.contains("find");
+
+                Class handlerClass = isQuery
+                        ? ProductsQueryHandler.class
+                        : ProductsCommandHandler.class;
 
                 Constructor<? extends CommandHandler> constructor = resolver
                         .getHandler(command)
-                        .getConstructor(ProductsCommandHandler.class, BufferedReader.class);
+                        .getConstructor(handlerClass, BufferedReader.class);
 
-                CommandHandler parser = constructor.newInstance(handlers, reader);
+                CommandHandler parser = isQuery
+                        ? constructor.newInstance(new ProductsQueryHandler(database), reader)
+                        : constructor.newInstance(new ProductsCommandHandler(database), reader);
 
                 parser.handle();
+
+                System.out.print("Continue with a new action? (Y/n): ");
+
+                shouldTerminate = reader.readLine().equalsIgnoreCase("n");
             } catch (Exception error) {
                 System.out.println(error);
             }

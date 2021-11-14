@@ -1,19 +1,18 @@
 package com.alexx666.products.models;
 
-import java.util.HashMap;
-import java.util.Map;
-
 // DDD Entity
 public class Product {
 
     private String productId;
-    private String productName;
-    private Map<String, ProductRating> ratings;
+    private String productName; // TODO: V.O.
+    private String description;
+    private double price; // TODO: V.O.
 
     private Product(Builder builder) {
         this.productId = builder.productId;;
         this.productName = builder.productName;
-        this.ratings = builder.ratings;
+        this.description = builder.description;
+        this.price = builder.price;
     }
 
     public String getProductId() {
@@ -24,27 +23,24 @@ public class Product {
         return productName;
     }
 
-    public Map<String, ProductRating> getRatings() {
-        return this.ratings;
+    public double getPrice() {
+        return price;
     }
 
-    public void rate(String userId, int rating) {
-        this.ratings.put(userId, ProductRating.create(rating));
+    public String getDescription() {
+        return description;
+    }
+
+    // action on the domain object that can be a lot more complex
+    public UserRating rate(String userId, int rating) {
+        return new UserRating(this.productId, userId, rating);
     }
 
     public static class Builder {
         private String productId;
         private String productName;
-        private Map<String, ProductRating> ratings;
-
-        public Builder() {
-            this.ratings = new HashMap<>();
-        }
-
-        public Builder withRatings(Map<String, ProductRating> ratings) {
-            this.ratings = ratings;
-            return this;
-        }
+        private String description;
+        private double price; // TODO: V.O.
 
         public Builder identifier(String productId) {
             this.productId = productId;
@@ -56,8 +52,17 @@ public class Product {
             return this;
         }
 
+        public Builder description(String description) {
+            this.description = description;
+            return this;
+        }
+
+        public Builder price(double price) {
+            this.price = price; // TODO: convert to VO here
+            return this;
+        }
+
         public Product build() {
-            // TODO: validation logic
             return new Product(this);
         }
     }
