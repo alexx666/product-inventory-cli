@@ -3,7 +3,6 @@ package com.alexx666.products;
 import com.alexx666.products.commands.AddNewProduct;
 import com.alexx666.products.models.Product;
 import com.alexx666.products.commands.RateProduct;
-import com.alexx666.products.models.ProductRating;
 import com.alexx666.products.models.ProductRepository;
 
 public class ProductsCommandHandler {
@@ -19,19 +18,17 @@ public class ProductsCommandHandler {
     public void handle(RateProduct command) throws Exception {
         Product product = this.repository.find(command.getProductId());
 
-        ProductRating rating = ProductRating.create(command.getRating());
-
-        product.rate(command.getUserId(), rating);
+        product.rate(command.getUserId(), command.getRating());
 
         this.repository.save(product);
     }
 
     // FIXME: use a response model to represent the result of the operation
     public String handle(AddNewProduct command) {
-        Product product = new Product(command.getName());
+        Product product = new Product.Builder()
+                .withName(command.getName())
+                .build();
 
-        this.repository.save(product);
-
-        return product.getProductId();
+        return this.repository.save(product);
     }
 }

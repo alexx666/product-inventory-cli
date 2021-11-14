@@ -32,13 +32,19 @@ public class InMemoryProductRepository implements ProductRepository {
     }
 
     @Override
-    public void save(Product product) {
+    public String save(Product product) {
         boolean isNew = product.getProductId() == null;
 
         String productId = isNew ? Hashing.getRandomHash() : product.getProductId();
 
-        product.setProductId(productId);
+        Product productWithId = new Product.Builder()
+                .identifier(productId)
+                .withName(product.getProductName())
+                .withRatings(product.getRatings())
+                .build();
 
-        this.products.put(productId, product);
+        this.products.put(productId, productWithId);
+
+        return productId;
     }
 }

@@ -28,6 +28,6 @@ public class AddNewProductHandler extends CommandHandler {
 
         String productId = handlers.handle(command);
 
-        System.out.println("New product added with ID: " + productId);
+        System.out.println("New product '" + productName + "' (" + productId + ") added!");
     }
 }

@@ -23,17 +23,17 @@ public class RateProductHandler extends CommandHandler {
         String productId = this.reader.readLine().trim();
 
         System.out.print("User Id: ");
-        String userID = this.reader.readLine().trim();
+        String userId = this.reader.readLine().trim();
 
         System.out.print("Rating: ");
         int rating = Integer.parseInt(this.reader.readLine().trim());
 
-        RateProduct command = new RateProduct(productId, userID, rating);
+        RateProduct command = new RateProduct(productId, userId, rating);
 
         System.out.println("Executing request ID: " + command.getUUID());
 
         handlers.handle(command);
 
-        System.out.println("Rated product with " + command.getRating() + " stars!");
+        System.out.println("User (" + userId + ") rated product (" + productId + ") with '" + command.getRating() + "' stars!");
     }
 }
