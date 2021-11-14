@@ -7,14 +7,8 @@ import java.util.Set;
 public class CommandParser {
     private final Map<String, Class<? extends CommandHandler>> commands;
 
-    public CommandParser() {
-        this.commands = new HashMap<>();
-    }
-
-    public CommandParser register(String command, Class<? extends CommandHandler> handler) {
-        this.commands.put(command, handler);
-
-        return this;
+    private CommandParser(Builder builder) {
+        this.commands = builder.commands;
     }
 
     public Class<? extends CommandHandler> getHandler(String command) {
@@ -26,5 +20,22 @@ public class CommandParser {
 
     public Set<String> availableActions() {
         return this.commands.keySet();
+    }
+
+    public static class Builder {
+        private Map<String, Class<? extends CommandHandler>> commands;
+
+        public Builder() {
+            this.commands = new HashMap<>();
+        }
+
+        public Builder register(String command, Class<? extends CommandHandler> handler) {
+            this.commands.put(command, handler);
+            return this;
+        }
+
+        public CommandParser build() {
+            return new CommandParser(this);
+        }
     }
 }

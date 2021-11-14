@@ -31,10 +31,7 @@ public class AddNewProductHandler extends CommandHandler {
         System.out.print("Items in stock: ");
         int count = Integer.parseInt(this.reader.readLine().trim());
 
-        System.out.println("count input: " + count);
-
         AddNewProduct command = new AddNewProduct(productName, description, price, count);
-
         System.out.println("Executing request ID: " + command.getUUID());
 
         String productId = handlers.handle(command);

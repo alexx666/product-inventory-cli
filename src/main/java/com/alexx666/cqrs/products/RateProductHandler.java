@@ -29,7 +29,6 @@ public class RateProductHandler extends CommandHandler {
         int rating = Integer.parseInt(this.reader.readLine().trim());
 
         RateProduct command = new RateProduct(productId, userId, rating);
-
         System.out.println("Executing request ID: " + command.getUUID());
 
         handlers.handle(command);

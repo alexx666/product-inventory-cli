@@ -24,6 +24,7 @@ public class AddToInventoryHandler extends CommandHandler {
         int count = Integer.parseInt(this.reader.readLine().trim());
 
         AddToInventory command = new AddToInventory(productId, count);
+        System.out.println("Executing request ID: " + command.getUUID());
 
         this.handlers.handle(command);
 

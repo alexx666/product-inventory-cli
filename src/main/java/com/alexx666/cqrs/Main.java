@@ -15,32 +15,32 @@ import java.lang.reflect.Constructor;
 public class Main {
 
     public static void main(String[] args) throws IOException {
+
+        boolean shouldContinue = true;
+
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         InMemoryProductDatabase database = new InMemoryProductDatabase.Builder().build();
 
-        CommandParser resolver = new CommandParser()
+        CommandParser commandParser = new CommandParser.Builder()
                 .register("rate", RateProductHandler.class)
                 .register("create", AddNewProductHandler.class)
                 .register("add", AddToInventoryHandler.class)
                 .register("findById", FindByIdHandler.class)
                 .register("findRelated", FindRelatedProductsHandler.class)
                 .register("findOutOfStock", FindOutOfStockProductsHandler.class)
-                .register("findByName", FindByNameHandler.class);
-
-        boolean shouldTerminate = false;
+                .register("findByName", FindByNameHandler.class)
+                .build();
 
         System.out.println("Available actions:");
 
-        for (String action: resolver.availableActions()) {
+        for (String action: commandParser.availableActions()) {
             System.out.println("    - " + action);
         }
 
-        while (!shouldTerminate) {
+        while (shouldContinue) {
             try {
-
                 System.out.print("Action: ");
-
                 String command = reader.readLine().trim();
 
                 boolean isQuery = command.contains("find");
@@ -49,7 +49,7 @@ public class Main {
                         ? ProductsDAO.class
                         : ProductsCommandHandler.class;
 
-                Constructor<? extends CommandHandler> constructor = resolver
+                Constructor<? extends CommandHandler> constructor = commandParser
                         .getHandler(command)
                         .getConstructor(handlerClass, BufferedReader.class);
 
@@ -64,7 +64,7 @@ public class Main {
                 System.out.println();
             } finally {
                 System.out.print("Continue with a new action? (Y/n): ");
-                shouldTerminate = reader.readLine().equalsIgnoreCase("n");
+                shouldContinue = !reader.readLine().equalsIgnoreCase("n");
             }
         }
     }
