@@ -1,6 +1,6 @@
 package com.alexx666.cqrs.products;
 
-import com.alexx666.cqrs.utils.CommandHandler;
+import com.alexx666.cqrs.cli.CLICommand;
 import com.alexx666.products.models.ProductInventory;
 import com.alexx666.products.models.ProductsDAO;
 
@@ -8,7 +8,8 @@ import java.io.BufferedReader;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class FindOutOfStockProductsHandler extends CommandHandler {
+public class FindOutOfStockProductsHandler extends CLICommand {
+
     private ProductsDAO productsDAO;
 
     public FindOutOfStockProductsHandler(ProductsDAO productsDAO, BufferedReader reader) {

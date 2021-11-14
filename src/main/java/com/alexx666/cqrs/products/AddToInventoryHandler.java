@@ -1,12 +1,12 @@
 package com.alexx666.cqrs.products;
 
-import com.alexx666.cqrs.utils.CommandHandler;
+import com.alexx666.cqrs.cli.CLICommand;
 import com.alexx666.products.ProductsCommandHandler;
 import com.alexx666.products.commands.AddToInventory;
 
 import java.io.BufferedReader;
 
-public class AddToInventoryHandler extends CommandHandler {
+public class AddToInventoryHandler extends CLICommand {
 
     private ProductsCommandHandler handlers;
 

@@ -1,71 +1,47 @@
 package com.alexx666.cqrs;
 
+import com.alexx666.cqrs.cli.CLICommand;
 import com.alexx666.cqrs.products.*;
-import com.alexx666.cqrs.utils.CommandHandler;
-import com.alexx666.cqrs.utils.CommandParser;
+import com.alexx666.cqrs.cli.CLI;
 import com.alexx666.products.ProductsCommandHandler;
 import com.alexx666.products.infra.InMemoryProductDatabase;
-import com.alexx666.products.models.ProductsDAO;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Constructor;
 
 public class Main {
 
-    public static void main(String[] args) throws IOException {
-
-        boolean shouldContinue = true;
-
+    public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         InMemoryProductDatabase database = new InMemoryProductDatabase.Builder().build();
+        ProductsCommandHandler productsCommandHandler = new ProductsCommandHandler(database);
 
-        CommandParser commandParser = new CommandParser.Builder()
-                .register("rate", RateProductHandler.class)
-                .register("create", AddNewProductHandler.class)
-                .register("add", AddToInventoryHandler.class)
-                .register("findById", FindByIdHandler.class)
-                .register("findRelated", FindRelatedProductsHandler.class)
-                .register("findOutOfStock", FindOutOfStockProductsHandler.class)
-                .register("findByName", FindByNameHandler.class)
+        // FIXME: remove reader from constructor
+        CLICommand rateProductHandler = new RateProductHandler(productsCommandHandler, reader);
+        CLICommand addNewProductHandler = new AddNewProductHandler(productsCommandHandler, reader);
+        CLICommand addToInventoryHandler = new AddToInventoryHandler(productsCommandHandler, reader);
+        CLICommand findByIdHandler = new FindByIdHandler(database, reader);
+        CLICommand findRelatedProductsHandler = new FindRelatedProductsHandler(database, reader);
+        CLICommand findOutOfStockProductsHandler = new FindOutOfStockProductsHandler(database, reader);
+        CLICommand findByNameHandler = new FindByNameHandler(database, reader);
+
+        CLI commandParser = new CLI.Builder()
+                .input(reader)
+                .addCommand("rate", rateProductHandler)
+                .addCommand("new", addNewProductHandler)
+                .addCommand("add", addToInventoryHandler)
+                .addCommand("findById", findByIdHandler)
+                .addCommand("findRelated", findRelatedProductsHandler)
+                .addCommand("findOutOfStock", findOutOfStockProductsHandler)
+                .addCommand("findByName", findByNameHandler)
                 .build();
 
-        System.out.println("Available actions:");
-
-        for (String action: commandParser.availableActions()) {
-            System.out.println("    - " + action);
-        }
-
-        while (shouldContinue) {
-            try {
-                System.out.print("Action: ");
-                String command = reader.readLine().trim();
-
-                boolean isQuery = command.contains("find");
-
-                Class handlerClass = isQuery
-                        ? ProductsDAO.class
-                        : ProductsCommandHandler.class;
-
-                Constructor<? extends CommandHandler> constructor = commandParser
-                        .getHandler(command)
-                        .getConstructor(handlerClass, BufferedReader.class);
-
-                CommandHandler parser = isQuery
-                        ? constructor.newInstance(database, reader)
-                        : constructor.newInstance(new ProductsCommandHandler(database), reader);
-
-                parser.handle();
-
-            } catch (Exception error) {
-                error.printStackTrace();
-                System.out.println();
-            } finally {
-                System.out.print("Continue with a new action? (Y/n): ");
-                shouldContinue = !reader.readLine().equalsIgnoreCase("n");
-            }
+        try {
+            commandParser.start();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

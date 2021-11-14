@@ -1,6 +1,6 @@
 package com.alexx666.cqrs.products;
 
-import com.alexx666.cqrs.utils.CommandHandler;
+import com.alexx666.cqrs.cli.CLICommand;
 import com.alexx666.products.models.ProductDisplay;
 import com.alexx666.products.models.ProductsDAO;
 
@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class FindRelatedProductsHandler extends CommandHandler {
+public class FindRelatedProductsHandler extends CLICommand {
 
     private ProductsDAO productsDAO;
 

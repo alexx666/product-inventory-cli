@@ -1,12 +1,12 @@
-package com.alexx666.cqrs.utils;
+package com.alexx666.cqrs.cli;
 
 import java.io.BufferedReader;
 
-public abstract class CommandHandler {
+public abstract class CLICommand {
 
      protected BufferedReader reader;
 
-     public CommandHandler(BufferedReader reader) {
+     public CLICommand(BufferedReader reader) {
           this.reader = reader;
      }
 
