@@ -1,8 +1,8 @@
 package com.alexx666.cqrs.products;
 
 import com.alexx666.cqrs.utils.CommandHandler;
-import com.alexx666.products.ProductsQueryHandler;
 import com.alexx666.products.models.ProductDisplay;
+import com.alexx666.products.models.ProductsDAO;
 
 import java.io.BufferedReader;
 import java.util.Arrays;
@@ -10,11 +10,11 @@ import java.util.Collection;
 
 public class FindRelatedProductsHandler extends CommandHandler {
 
-    private ProductsQueryHandler handlers;
+    private ProductsDAO productsDAO;
 
-    public FindRelatedProductsHandler(ProductsQueryHandler handlers, BufferedReader reader) {
+    public FindRelatedProductsHandler(ProductsDAO productsDAO, BufferedReader reader) {
         super(reader);
-        this.handlers = handlers;
+        this.productsDAO = productsDAO;
     }
 
     @Override
@@ -22,7 +22,7 @@ public class FindRelatedProductsHandler extends CommandHandler {
         System.out.print("Product ID: ");
         String productId = this.reader.readLine();
 
-        Collection<ProductDisplay> relatedProducts = this.handlers.findRelatedProducts(productId);
+        Collection<ProductDisplay> relatedProducts = this.productsDAO.findRelatedProducts(productId);
 
         System.out.println("Found these related products: " + Arrays.toString(relatedProducts.toArray()));
     }

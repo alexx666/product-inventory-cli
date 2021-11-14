@@ -4,8 +4,8 @@ import com.alexx666.cqrs.products.*;
 import com.alexx666.cqrs.utils.CommandHandler;
 import com.alexx666.cqrs.utils.CommandParser;
 import com.alexx666.products.ProductsCommandHandler;
-import com.alexx666.products.ProductsQueryHandler;
 import com.alexx666.products.infra.InMemoryProductDatabase;
+import com.alexx666.products.models.ProductsDAO;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class Main {
                 boolean isQuery = command.contains("find");
 
                 Class handlerClass = isQuery
-                        ? ProductsQueryHandler.class
+                        ? ProductsDAO.class
                         : ProductsCommandHandler.class;
 
                 Constructor<? extends CommandHandler> constructor = resolver
@@ -53,7 +53,7 @@ public class Main {
                         .getConstructor(handlerClass, BufferedReader.class);
 
                 CommandHandler parser = isQuery
-                        ? constructor.newInstance(new ProductsQueryHandler(database), reader)
+                        ? constructor.newInstance(database, reader)
                         : constructor.newInstance(new ProductsCommandHandler(database), reader);
 
                 parser.handle();

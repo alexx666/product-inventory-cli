@@ -5,18 +5,17 @@ import com.alexx666.core.Hashing;
 import com.alexx666.products.models.*;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
 
-    private Map<String, Product> products;
-    private Map<String, Map<String, Integer>> userRatings;
-    private Map<String, Integer> invetory;
+    private final Map<String, Product> products;
+    private final Map<String, Map<String, Integer>> userRatings;
+    private final Map<String, Integer> inventory;
 
     private InMemoryProductDatabase(Builder builder) {
         this.products = builder.products;
         this.userRatings = builder.userRatings;
-        this.invetory = builder.inventory;
+        this.inventory = builder.inventory;
     }
 
     @Override
@@ -47,7 +46,7 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
         this.products.put(productId, product);
 
         if (isNew) {
-            this.invetory.put(productId, 0);
+            this.inventory.put(productId, 0);
             this.userRatings.put(productId, new HashMap<>());
         }
 
@@ -64,7 +63,7 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
     public ProductDisplay findById(String productId) throws Exception {
         Product product = this.find(productId);
 
-        boolean outOfStock = this.invetory.get(productId) == null || this.invetory.get(productId) == 0;
+        boolean outOfStock = this.inventory.get(productId) == null || this.inventory.get(productId) == 0;
         double rating = calculateRatingForProduct(productId);
         int totalRatings = this.userRatings.get(productId).size();
 
@@ -80,16 +79,19 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
         return productDisplay;
     }
 
+    // TODO: implement
     @Override
     public Collection<ProductDisplay> findByName(String name) {
         return null;
     }
 
+    // TODO: implement
     @Override
     public Collection<ProductInventory> findOutOfStockProducts() {
         return null;
     }
 
+    // TODO: implement
     @Override
     public Collection<ProductDisplay> findRelatedProducts(String productId) {
         return null;
