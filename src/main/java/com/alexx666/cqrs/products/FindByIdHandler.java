@@ -18,7 +18,7 @@ public class FindByIdHandler extends CommandHandler {
     @Override
     public void handle() throws Exception {
         System.out.print("Product ID: ");
-        String productId = this.reader.readLine();
+        String productId = this.reader.readLine().trim();
 
         ProductDisplay productDisplay = this.productsDAO.findById(productId);
 

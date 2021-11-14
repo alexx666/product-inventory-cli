@@ -7,16 +7,22 @@ public class Product {
     private String productName; // TODO: V.O.
     private String description;
     private double price; // TODO: V.O.
+    private int itemsInStock;
 
     private Product(Builder builder) {
         this.productId = builder.productId;;
         this.productName = builder.productName;
         this.description = builder.description;
         this.price = builder.price;
+        this.itemsInStock = builder.itemsInStock;
     }
 
     public String getProductId() {
         return productId;
+    }
+
+    public void setProductId(String id) {
+        this.productId = id;
     }
 
     public String getProductName() {
@@ -31,6 +37,10 @@ public class Product {
         return description;
     }
 
+    public int getItemsInStock() {
+        return itemsInStock;
+    }
+
     // action on the domain object that can be a lot more complex
     public UserRating rate(String userId, int rating) {
         return new UserRating(this.productId, userId, rating);
@@ -38,9 +48,10 @@ public class Product {
 
     public static class Builder {
         private String productId;
-        private String productName;
+        private String productName; // TODO: V.O.
         private String description;
         private double price; // TODO: V.O.
+        private int itemsInStock;
 
         public Builder identifier(String productId) {
             this.productId = productId;
@@ -48,7 +59,7 @@ public class Product {
         }
 
         public Builder withName(String productName) {
-            this.productName = productName;
+            this.productName = productName; // TODO: convert to VO here
             return this;
         }
 
@@ -59,6 +70,11 @@ public class Product {
 
         public Builder price(double price) {
             this.price = price; // TODO: convert to VO here
+            return this;
+        }
+
+        public Builder inStock(int count) {
+            this.itemsInStock = count;
             return this;
         }
 

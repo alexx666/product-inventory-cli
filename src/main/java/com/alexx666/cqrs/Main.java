@@ -40,7 +40,7 @@ public class Main {
 
                 System.out.print("Action: ");
 
-                String command = reader.readLine();
+                String command = reader.readLine().trim();
 
                 boolean isQuery = command.contains("find");
 

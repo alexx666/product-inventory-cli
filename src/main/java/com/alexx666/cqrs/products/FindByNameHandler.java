@@ -19,7 +19,7 @@ public class FindByNameHandler extends CommandHandler {
     @Override
     public void handle() throws Exception {
         System.out.print("Name: ");
-        String name = this.reader.readLine();
+        String name = this.reader.readLine().trim();
 
         Collection<ProductDisplay> results = this.productsDAO.findByName(name);
 

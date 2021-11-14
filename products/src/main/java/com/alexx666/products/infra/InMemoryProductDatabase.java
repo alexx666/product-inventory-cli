@@ -10,12 +10,10 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
 
     private final Map<String, Product> products;
     private final Map<String, Map<String, Integer>> userRatings;
-    private final Map<String, Integer> inventory;
 
     private InMemoryProductDatabase(Builder builder) {
         this.products = builder.products;
         this.userRatings = builder.userRatings;
-        this.inventory = builder.inventory;
     }
 
     @Override
@@ -26,15 +24,7 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
             throw new Exception("Product (" + productId + ") not found!");
         }
 
-        // TODO: use in mapper after figuring out a data structure for in memory
-        Product productWithId = new Product.Builder()
-                .identifier(productId)
-                .withName(product.getProductName())
-                .description(product.getDescription())
-                .price(product.getPrice())
-                .build();
-
-        return productWithId;
+        return product;
     }
 
     @Override
@@ -43,10 +33,11 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
 
         String productId = isNew ? Hashing.getRandomHash() : product.getProductId();
 
+        product.setProductId(productId);
+
         this.products.put(productId, product);
 
         if (isNew) {
-            this.inventory.put(productId, 0);
             this.userRatings.put(productId, new HashMap<>());
         }
 
@@ -63,7 +54,9 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
     public ProductDisplay findById(String productId) throws Exception {
         Product product = this.find(productId);
 
-        boolean outOfStock = this.inventory.get(productId) == null || this.inventory.get(productId) == 0;
+        System.out.println("Items in stock: " + product.getItemsInStock());
+
+        boolean outOfStock = product.getItemsInStock() == 0;
         double rating = calculateRatingForProduct(productId);
         int totalRatings = this.userRatings.get(productId).size();
 
@@ -116,21 +109,14 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
     public static class Builder {
         private Map<String, Product> products;
         private Map<String, Map<String, Integer>> userRatings;
-        private Map<String, Integer> inventory;
 
         public Builder() {
             this.products = new HashMap<>();
             this.userRatings = new HashMap<>();
-            this.inventory = new HashMap<>();
         }
 
         public Builder initialProducts(Map<String, Product> products) {
             this.products = products;
-            return this;
-        }
-
-        public Builder initialInventory(Map<String, Integer> inventory) {
-            this.inventory = inventory;
             return this;
         }
 

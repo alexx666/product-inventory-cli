@@ -6,14 +6,16 @@ public class AddNewProduct extends Command {
 
     private String name;
     private String description;
-    private int price;
+    private double price;
+    private int count;
 
-    public AddNewProduct(String name, String description, int price) {
+    public AddNewProduct(String name, String description, double price, int count) {
         super();
 
         this.name = name;
         this.description = description;
         this.price = price;
+        this.count = count;
     }
 
     public String getName() {
@@ -24,7 +26,11 @@ public class AddNewProduct extends Command {
         return description;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
+    }
+
+    public int getCount() {
+        return count;
     }
 }

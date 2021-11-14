@@ -20,7 +20,7 @@ public class FindRelatedProductsHandler extends CommandHandler {
     @Override
     public void handle() throws Exception {
         System.out.print("Product ID: ");
-        String productId = this.reader.readLine();
+        String productId = this.reader.readLine().trim();
 
         Collection<ProductDisplay> relatedProducts = this.productsDAO.findRelatedProducts(productId);
 
