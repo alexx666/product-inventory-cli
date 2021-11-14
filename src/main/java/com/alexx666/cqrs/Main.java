@@ -21,7 +21,8 @@ public class Main {
 
         CommandParser resolver = new CommandParser()
                 .register("rate", RateProductHandler.class)
-                .register("add", AddNewProductHandler.class)
+                .register("create", AddNewProductHandler.class)
+                .register("add", AddToInventoryHandler.class)
                 .register("findById", FindByIdHandler.class)
                 .register("findRelated", FindRelatedProductsHandler.class)
                 .register("findOutOfStock", FindOutOfStockProductsHandler.class)

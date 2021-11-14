@@ -37,7 +37,11 @@ public class ProductsCommandHandler {
     }
 
     // This can be done emitting a domain event too
-    public void handle(AddToInventory command) {
+    public void handle(AddToInventory command) throws Exception {
+        Product product = this.repository.find(command.getProductId());
 
+        product.addToInventory(command.getNumberOfItems());
+
+        this.repository.saveProduct(product);
     }
 }

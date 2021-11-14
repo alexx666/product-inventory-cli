@@ -41,6 +41,10 @@ public class Product {
         return itemsInStock;
     }
 
+    public void addToInventory(int count) {
+        this.itemsInStock += count;
+    }
+
     // action on the domain object that can be a lot more complex
     public UserRating rate(String userId, int rating) {
         return new UserRating(this.productId, userId, rating);
