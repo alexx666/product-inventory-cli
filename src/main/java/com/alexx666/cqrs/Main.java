@@ -8,12 +8,13 @@ import com.alexx666.products.ProductsQueryHandler;
 import com.alexx666.products.infra.InMemoryProductDatabase;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         InMemoryProductDatabase database = new InMemoryProductDatabase.Builder().build();
@@ -30,12 +31,9 @@ public class Main {
 
         System.out.println("Available actions:");
 
-        System.out.println("    - rate");
-        System.out.println("    - add");
-        System.out.println("    - findById");
-        System.out.println("    - findRelated");
-        System.out.println("    - findOutOfStock");
-        System.out.println("    - findByName");
+        for (String action: resolver.availableActions()) {
+            System.out.println("    - " + action);
+        }
 
         while (!shouldTerminate) {
             try {
@@ -60,12 +58,12 @@ public class Main {
 
                 parser.handle();
 
-                System.out.print("Continue with a new action? (Y/n): ");
-
-                shouldTerminate = reader.readLine().equalsIgnoreCase("n");
             } catch (Exception error) {
-                System.out.println(error);
                 error.printStackTrace();
+                System.out.println();
+            } finally {
+                System.out.print("Continue with a new action? (Y/n): ");
+                shouldTerminate = reader.readLine().equalsIgnoreCase("n");
             }
         }
     }
