@@ -8,12 +8,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class InMemoryProductRepository implements ProductRepository, ProductsDAO {
+public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
 
     private Map<String, Product> products;
     private Map<String, Integer> userRatings;
 
-    private InMemoryProductRepository(Builder builder) {
+    private InMemoryProductDatabase(Builder builder) {
         this.products = builder.products;
         this.userRatings = builder.userRatings;
     }
@@ -104,8 +104,8 @@ public class InMemoryProductRepository implements ProductRepository, ProductsDAO
             return this;
         }
 
-        public InMemoryProductRepository build() {
-            return new InMemoryProductRepository(this);
+        public InMemoryProductDatabase build() {
+            return new InMemoryProductDatabase(this);
         }
     }
 }

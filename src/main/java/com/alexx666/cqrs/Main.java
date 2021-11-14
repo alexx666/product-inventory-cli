@@ -5,7 +5,7 @@ import com.alexx666.cqrs.utils.CommandHandler;
 import com.alexx666.cqrs.utils.CommandParser;
 import com.alexx666.products.ProductsCommandHandler;
 import com.alexx666.products.ProductsQueryHandler;
-import com.alexx666.products.infra.InMemoryProductRepository;
+import com.alexx666.products.infra.InMemoryProductDatabase;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        InMemoryProductRepository database = new InMemoryProductRepository.Builder().build();
+        InMemoryProductDatabase database = new InMemoryProductDatabase.Builder().build();
 
         CommandParser resolver = new CommandParser()
                 .register("rate", RateProductHandler.class)
