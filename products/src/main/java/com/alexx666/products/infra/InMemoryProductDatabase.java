@@ -4,18 +4,19 @@ import com.alexx666.core.Hashing;
 
 import com.alexx666.products.models.*;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
 
     private Map<String, Product> products;
-    private Map<String, Integer> userRatings;
+    private Map<String, Map<String, Integer>> userRatings;
+    private Map<String, Integer> invetory;
 
     private InMemoryProductDatabase(Builder builder) {
         this.products = builder.products;
         this.userRatings = builder.userRatings;
+        this.invetory = builder.inventory;
     }
 
     @Override
@@ -45,26 +46,35 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
 
         this.products.put(productId, product);
 
+        if (isNew) {
+            this.invetory.put(productId, 0);
+            this.userRatings.put(productId, new HashMap<>());
+        }
+
         return productId;
     }
 
     @Override
     public void saveUserRating(UserRating userRating) {
-        String ratingKey = userRating.getUserId() + ":" + userRating.getProductId();
-        this.userRatings.put(ratingKey, userRating.getRating().getValue());
+        Map<String, Integer> productRatings = this.userRatings.get(userRating.getProductId());
+        productRatings.put(userRating.getUserId(), userRating.getRating().getValue());
     }
 
     @Override
     public ProductDisplay findById(String productId) throws Exception {
         Product product = this.find(productId);
 
-        // TODO: get all user ratings for product and calculate total rating
+        boolean outOfStock = this.invetory.get(productId) == null || this.invetory.get(productId) == 0;
+        double rating = calculateRatingForProduct(productId);
+        int totalRatings = this.userRatings.get(productId).size();
 
-        // TODO: use in mapper after figuring out a data structure for in memory
         ProductDisplay productDisplay = new ProductDisplay.Builder()
                 .identifier(product.getProductId())
                 .name(product.getProductName())
                 .description(product.getDescription())
+                .rating(rating)
+                .outOfStock(outOfStock)
+                .totalRatings(totalRatings)
                 .price(product.getPrice()).build();
 
         return productDisplay;
@@ -85,21 +95,44 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
         return null;
     }
 
+    private double calculateRatingForProduct(String productId) {
+        Map<String, Integer> productRatings = this.userRatings.get(productId);
+
+        if (productRatings.size() == 0) {
+            return 0;
+        }
+
+        int totalRating = 0;
+
+        for (Integer rating: productRatings.values()) {
+            totalRating += rating;
+        }
+
+        return (double) Math.round(totalRating / productRatings.size() * 10) / 10;
+    }
+
     public static class Builder {
         private Map<String, Product> products;
-        private Map<String, Integer> userRatings;
+        private Map<String, Map<String, Integer>> userRatings;
+        private Map<String, Integer> inventory;
 
         public Builder() {
             this.products = new HashMap<>();
             this.userRatings = new HashMap<>();
+            this.inventory = new HashMap<>();
         }
 
-        public Builder initialInventory(Map<String, Product> products) {
+        public Builder initialProducts(Map<String, Product> products) {
             this.products = products;
             return this;
         }
 
-        public Builder initialRatings(Map<String, Integer> userRatings) {
+        public Builder initialInventory(Map<String, Integer> inventory) {
+            this.inventory = inventory;
+            return this;
+        }
+
+        public Builder initialRatings(Map<String, Map<String, Integer>> userRatings) {
             this.userRatings = userRatings;
             return this;
         }

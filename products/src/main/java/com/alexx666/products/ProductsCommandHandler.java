@@ -28,6 +28,8 @@ public class ProductsCommandHandler {
     public String handle(AddNewProduct command) {
         Product product = new Product.Builder()
                 .withName(command.getName())
+                .description(command.getDescription())
+                .price(command.getPrice())
                 .build();
 
         return this.repository.saveProduct(product);

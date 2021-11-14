@@ -28,16 +28,17 @@ public class Main {
 
         boolean shouldTerminate = false;
 
+        System.out.println("Available actions:");
+
+        System.out.println("    - rate");
+        System.out.println("    - add");
+        System.out.println("    - findById");
+        System.out.println("    - findRelated");
+        System.out.println("    - findOutOfStock");
+        System.out.println("    - findByName");
+
         while (!shouldTerminate) {
             try {
-                System.out.println("Available actions:");
-
-                System.out.println("    - rate");
-                System.out.println("    - add");
-                System.out.println("    - findById");
-                System.out.println("    - findRelated");
-                System.out.println("    - findOutOfStock");
-                System.out.println("    - findByName");
 
                 System.out.print("Action: ");
 
@@ -64,6 +65,7 @@ public class Main {
                 shouldTerminate = reader.readLine().equalsIgnoreCase("n");
             } catch (Exception error) {
                 System.out.println(error);
+                error.printStackTrace();
             }
         }
     }

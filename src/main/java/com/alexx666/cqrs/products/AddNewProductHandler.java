@@ -19,10 +19,16 @@ public class AddNewProductHandler extends CommandHandler {
 
     @Override
     public void handle() throws Exception {
-        System.out.print("Product Name: ");
+        System.out.print("Name: ");
         String productName = this.reader.readLine().trim();
 
-        AddNewProduct command = new AddNewProduct(productName);
+        System.out.print("Description: ");
+        String description = this.reader.readLine().trim();
+
+        System.out.print("Price: ");
+        int price = Integer.valueOf(this.reader.readLine().trim());
+
+        AddNewProduct command = new AddNewProduct(productName, description, price);
 
         System.out.println("Executing request ID: " + command.getUUID());
 

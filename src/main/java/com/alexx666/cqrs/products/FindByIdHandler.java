@@ -25,8 +25,7 @@ public class FindByIdHandler extends CommandHandler {
         System.out.println("ID: " + productDisplay.getId());
         System.out.println("Name: " + productDisplay.getName());
         System.out.println("Description: " + productDisplay.getDescription());
-        System.out.println("User Rating: " + productDisplay.getUserRating());
-        System.out.println("Price per unit: " + productDisplay.getUnitPrice());
-        System.out.println("In stock: " + !productDisplay.isOutOfStock());
+        System.out.println("Rating " + productDisplay.getUserRating() + " out of " + productDisplay.totalRatings() + " user(s)");
+        System.out.println("Price: " + productDisplay.getUnitPrice() + "$ per unit " + (productDisplay.isOutOfStock() ? "(out of stock)" : "(in stock)"));
     }
 }

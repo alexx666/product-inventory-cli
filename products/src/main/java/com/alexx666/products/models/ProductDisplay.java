@@ -8,6 +8,7 @@ public class ProductDisplay {
     private double unitPrice;
     private boolean isOutOfStock;
     private double userRating;
+    private int totalRatings;
 
     private ProductDisplay(Builder builder) {
         this.id = builder.id;;
@@ -16,6 +17,7 @@ public class ProductDisplay {
         this.unitPrice = builder.unitPrice;
         this.isOutOfStock = builder.isOutOfStock;
         this.userRating = builder.userRating;
+        this.totalRatings = builder.totalRatings;
     }
 
     public String getName() {
@@ -42,6 +44,8 @@ public class ProductDisplay {
         return userRating;
     }
 
+    public int totalRatings() { return totalRatings; }
+
     public static class Builder {
         private String id;
         private String name;
@@ -49,6 +53,7 @@ public class ProductDisplay {
         private double unitPrice;
         private boolean isOutOfStock;
         private double userRating;
+        private int totalRatings;
 
         public Builder identifier(String id) {
             this.id = id;
@@ -77,6 +82,11 @@ public class ProductDisplay {
 
         public Builder rating(double userRating) {
             this.userRating = userRating;
+            return this;
+        }
+
+        public Builder totalRatings(int totalRatings) {
+            this.totalRatings = totalRatings;
             return this;
         }
 
