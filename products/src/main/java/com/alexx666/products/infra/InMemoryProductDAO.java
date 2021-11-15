@@ -1,58 +1,31 @@
 package com.alexx666.products.infra;
 
-import com.alexx666.core.Hashing;
+import com.alexx666.products.models.Product;
+import com.alexx666.products.models.ProductDisplay;
+import com.alexx666.products.models.ProductInventory;
+import com.alexx666.products.models.ProductsDAO;
 
-import com.alexx666.products.models.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.*;
-
-public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
+public class InMemoryProductDAO implements ProductsDAO {
 
     private final Map<String, Product> products;
     private final Map<String, Map<String, Integer>> userRatings;
 
-    private InMemoryProductDatabase(Builder builder) {
+    private InMemoryProductDAO(Builder builder) {
         this.products = builder.products;
         this.userRatings = builder.userRatings;
     }
 
     @Override
-    public Product find(String productId) throws Exception {
+    public ProductDisplay findById(String productId) throws Exception {
         Product product = this.products.get(productId);
 
         if (product == null) {
             throw new Exception("Product (" + productId + ") not found!");
         }
-
-        return product;
-    }
-
-    @Override
-    public String saveProduct(Product product) {
-        boolean isNew = product.getProductId() == null;
-
-        String productId = isNew ? Hashing.getRandomHash() : product.getProductId();
-
-        product.setProductId(productId);
-
-        this.products.put(productId, product);
-
-        if (isNew) {
-            this.userRatings.put(productId, new HashMap<>());
-        }
-
-        return productId;
-    }
-
-    @Override
-    public void saveUserRating(UserRating userRating) {
-        Map<String, Integer> productRatings = this.userRatings.get(userRating.getProductId());
-        productRatings.put(userRating.getUserId(), userRating.getRating().getValue());
-    }
-
-    @Override
-    public ProductDisplay findById(String productId) throws Exception {
-        Product product = this.find(productId);
 
         System.out.println("Items in stock: " + product.getItemsInStock());
 
@@ -125,8 +98,8 @@ public class InMemoryProductDatabase implements ProductRepository, ProductsDAO {
             return this;
         }
 
-        public InMemoryProductDatabase build() {
-            return new InMemoryProductDatabase(this);
+        public InMemoryProductDAO build() {
+            return new InMemoryProductDAO(this);
         }
     }
 }
