@@ -28,19 +28,14 @@ public class CLI {
         }
     }
 
-    public void start() {
-        this.showHelp();
+    public void run() {
+        try {
+            System.out.print("Action: ");
+            String action = reader.readLine().trim();
 
-        // FIXME: temporary infinite loop to maintain data in memory
-        while (true) {
-            try {
-                System.out.print("Action: ");
-                String action = reader.readLine().trim();
-
-                this.getCommandForAction(action).handle(reader);
-            } catch (Exception error) {
-                error.printStackTrace(System.out);
-            }
+            this.getCommandForAction(action).handle(reader);
+        } catch (Exception error) {
+            error.printStackTrace(System.out);
         }
     }
 

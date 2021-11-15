@@ -34,7 +34,7 @@ public class Main {
 
         ProductsCommandHandler productsCommandHandler = new ProductsCommandHandler(productRepository);
 
-        CLI commandParser = new CLI.Builder()
+        CLI cli = new CLI.Builder()
                 .input(reader)
                 .addCommand(new RateProductHandler(productsCommandHandler))
                 .addCommand(new AddNewProductHandler(productsCommandHandler))
@@ -45,6 +45,11 @@ public class Main {
                 .addCommand(new FindByNameHandler(productsDAO))
                 .build();
 
-        commandParser.start();
+        cli.showHelp();
+
+        // FIXME: temporary infinite loop to maintain data in memory
+        while (true) {
+            cli.run();
+        }
     }
 }
