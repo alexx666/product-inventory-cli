@@ -12,15 +12,15 @@ public class FindByNameHandler extends CLICommand {
 
     private ProductsDAO productsDAO;
 
-    public FindByNameHandler(ProductsDAO productsDAO, BufferedReader reader) {
-        super(reader);
+    public FindByNameHandler(ProductsDAO productsDAO) {
+        super("findByName");
         this.productsDAO = productsDAO;
     }
 
     @Override
-    public void handle() throws Exception {
+    public void handle(BufferedReader reader) throws Exception {
         System.out.print("Name: ");
-        String name = this.reader.readLine().trim();
+        String name = reader.readLine().trim();
 
         Collection<ProductDisplay> results = this.productsDAO.findByName(name);
 

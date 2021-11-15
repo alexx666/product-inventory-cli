@@ -4,11 +4,15 @@ import java.io.BufferedReader;
 
 public abstract class CLICommand {
 
-     protected BufferedReader reader;
+     private final String name;
 
-     public CLICommand(BufferedReader reader) {
-          this.reader = reader;
+     public CLICommand(String name) {
+          this.name = name;
      }
 
-     public abstract void handle() throws Exception;
+     public abstract void handle(BufferedReader reader) throws Exception;
+
+     public String getName() {
+          return name;
+     }
 }

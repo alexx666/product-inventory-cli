@@ -10,15 +10,15 @@ public class FindByIdHandler extends CLICommand {
 
     private ProductsDAO productsDAO;
 
-    public FindByIdHandler(ProductsDAO productsDAO, BufferedReader reader) {
-        super(reader);
+    public FindByIdHandler(ProductsDAO productsDAO) {
+        super("findById");
         this.productsDAO = productsDAO;
     }
 
     @Override
-    public void handle() throws Exception {
+    public void handle(BufferedReader reader) throws Exception {
         System.out.print("Product ID: ");
-        String productId = this.reader.readLine().trim();
+        String productId = reader.readLine().trim();
 
         ProductDisplay productDisplay = this.productsDAO.findById(productId);
 

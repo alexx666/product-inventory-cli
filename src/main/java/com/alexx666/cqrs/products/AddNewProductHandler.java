@@ -11,25 +11,25 @@ public class AddNewProductHandler extends CLICommand {
 
     private ProductsCommandHandler handlers;
 
-    public AddNewProductHandler(ProductsCommandHandler handlers, BufferedReader reader) {
-        super(reader);
+    public AddNewProductHandler(ProductsCommandHandler handlers) {
+        super("new");
 
         this.handlers = handlers;
     }
 
     @Override
-    public void handle() throws Exception {
+    public void handle(BufferedReader reader) throws Exception {
         System.out.print("Name: ");
-        String productName = this.reader.readLine().trim();
+        String productName = reader.readLine().trim();
 
         System.out.print("Description: ");
-        String description = this.reader.readLine().trim();
+        String description = reader.readLine().trim();
 
         System.out.print("Price: ");
-        double price = Double.parseDouble(this.reader.readLine().trim());
+        double price = Double.parseDouble(reader.readLine().trim());
 
         System.out.print("Items in stock: ");
-        int count = Integer.parseInt(this.reader.readLine().trim());
+        int count = Integer.parseInt(reader.readLine().trim());
 
         AddNewProduct command = new AddNewProduct(productName, description, price, count);
         System.out.println("Executing request ID: " + command.getUUID());

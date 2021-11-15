@@ -10,18 +10,18 @@ public class AddToInventoryHandler extends CLICommand {
 
     private ProductsCommandHandler handlers;
 
-    public AddToInventoryHandler(ProductsCommandHandler handlers, BufferedReader reader) {
-        super(reader);
+    public AddToInventoryHandler(ProductsCommandHandler handlers) {
+        super("add");
         this.handlers = handlers;
     }
 
     @Override
-    public void handle() throws Exception {
+    public void handle(BufferedReader reader) throws Exception {
         System.out.print("Product ID: ");
-        String productId = this.reader.readLine().trim();
+        String productId = reader.readLine().trim();
 
         System.out.print("How many items? ");
-        int count = Integer.parseInt(this.reader.readLine().trim());
+        int count = Integer.parseInt(reader.readLine().trim());
 
         AddToInventory command = new AddToInventory(productId, count);
         System.out.println("Executing request ID: " + command.getUUID());

@@ -12,15 +12,15 @@ public class FindRelatedProductsHandler extends CLICommand {
 
     private ProductsDAO productsDAO;
 
-    public FindRelatedProductsHandler(ProductsDAO productsDAO, BufferedReader reader) {
-        super(reader);
+    public FindRelatedProductsHandler(ProductsDAO productsDAO) {
+        super("findRelated");
         this.productsDAO = productsDAO;
     }
 
     @Override
-    public void handle() throws Exception {
+    public void handle(BufferedReader reader) throws Exception {
         System.out.print("Product ID: ");
-        String productId = this.reader.readLine().trim();
+        String productId = reader.readLine().trim();
 
         Collection<ProductDisplay> relatedProducts = this.productsDAO.findRelatedProducts(productId);
 

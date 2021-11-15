@@ -12,13 +12,13 @@ public class FindOutOfStockProductsHandler extends CLICommand {
 
     private ProductsDAO productsDAO;
 
-    public FindOutOfStockProductsHandler(ProductsDAO productsDAO, BufferedReader reader) {
-        super(reader);
+    public FindOutOfStockProductsHandler(ProductsDAO productsDAO) {
+        super("findOutOfStock");
         this.productsDAO = productsDAO;
     }
 
     @Override
-    public void handle() throws Exception {
+    public void handle(BufferedReader reader) throws Exception {
         Collection<ProductInventory> outOfStockProducts = this.productsDAO.findOutOfStockProducts();
 
         System.out.println("Out of stock items: " + Arrays.toString(outOfStockProducts.toArray()));

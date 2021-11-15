@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class CLI {
     private final Map<String, CLICommand> commands;
@@ -15,34 +14,32 @@ public class CLI {
         this.reader = builder.reader;
     }
 
-    public CLICommand getHandler(String command) {
-        if (!this.commands.containsKey(command)) {
-            throw new IllegalArgumentException("Unknown command " + command);
+    private CLICommand getCommandForAction(String action) {
+        if (!this.commands.containsKey(action)) {
+            throw new IllegalArgumentException("Unknown command " + action);
         }
-        return this.commands.get(command);
+        return this.commands.get(action);
     }
 
-    public Set<String> availableActions() {
-        return this.commands.keySet();
+    public void showHelp() {
+        System.out.println("Available actions:");
+
+        for (String action: this.commands.keySet()) {
+            System.out.println("    - " + action);
+        }
     }
 
     public void start() throws IOException {
         boolean shouldContinue = true;
 
-        System.out.println("Available actions:");
-
-        for (String action: this.availableActions()) {
-            System.out.println("    - " + action);
-        }
+        this.showHelp();
 
         while (shouldContinue) {
             try {
                 System.out.print("Action: ");
-                String command = reader.readLine().trim();
+                String action = reader.readLine().trim();
 
-                CLICommand cliCommand = this.getHandler(command);
-
-                cliCommand.handle();
+                this.getCommandForAction(action).handle(reader);
             } catch (Exception error) {
                 error.printStackTrace();
                 System.out.println();
@@ -66,8 +63,8 @@ public class CLI {
             return this;
         }
 
-        public Builder addCommand(String command, CLICommand handler) {
-            this.commands.put(command, handler);
+        public Builder addCommand(CLICommand command) {
+            this.commands.put(command.getName(), command);
             return this;
         }
 

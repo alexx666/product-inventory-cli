@@ -12,21 +12,21 @@ public class RateProductHandler extends CLICommand {
 
     private ProductsCommandHandler handlers;
 
-    public RateProductHandler(ProductsCommandHandler handlers, BufferedReader reader) {
-        super(reader);
+    public RateProductHandler(ProductsCommandHandler handlers) {
+        super("rate");
         this.handlers = handlers;
     }
 
     @Override
-    public void handle() throws Exception {
+    public void handle(BufferedReader reader) throws Exception {
         System.out.print("Product Id: ");
-        String productId = this.reader.readLine().trim();
+        String productId = reader.readLine().trim();
 
         System.out.print("User Id: ");
-        String userId = this.reader.readLine().trim();
+        String userId = reader.readLine().trim();
 
         System.out.print("Rating: ");
-        int rating = Integer.parseInt(this.reader.readLine().trim());
+        int rating = Integer.parseInt(reader.readLine().trim());
 
         RateProduct command = new RateProduct(productId, userId, rating);
         System.out.println("Executing request ID: " + command.getUUID());

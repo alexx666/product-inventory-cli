@@ -1,6 +1,5 @@
 package com.alexx666.cqrs;
 
-import com.alexx666.cqrs.cli.CLICommand;
 import com.alexx666.cqrs.products.*;
 import com.alexx666.cqrs.cli.CLI;
 import com.alexx666.products.ProductsCommandHandler;
@@ -36,24 +35,15 @@ public class Main {
 
         ProductsCommandHandler productsCommandHandler = new ProductsCommandHandler(productRepository);
 
-        // FIXME: remove reader from constructor
-        CLICommand rateProductHandler = new RateProductHandler(productsCommandHandler, reader);
-        CLICommand addNewProductHandler = new AddNewProductHandler(productsCommandHandler, reader);
-        CLICommand addToInventoryHandler = new AddToInventoryHandler(productsCommandHandler, reader);
-        CLICommand findByIdHandler = new FindByIdHandler(productsDAO, reader);
-        CLICommand findRelatedProductsHandler = new FindRelatedProductsHandler(productsDAO, reader);
-        CLICommand findOutOfStockProductsHandler = new FindOutOfStockProductsHandler(productsDAO, reader);
-        CLICommand findByNameHandler = new FindByNameHandler(productsDAO, reader);
-
         CLI commandParser = new CLI.Builder()
                 .input(reader)
-                .addCommand("rate", rateProductHandler)
-                .addCommand("new", addNewProductHandler)
-                .addCommand("add", addToInventoryHandler)
-                .addCommand("findById", findByIdHandler)
-                .addCommand("findRelated", findRelatedProductsHandler)
-                .addCommand("findOutOfStock", findOutOfStockProductsHandler)
-                .addCommand("findByName", findByNameHandler)
+                .addCommand(new RateProductHandler(productsCommandHandler))
+                .addCommand(new AddNewProductHandler(productsCommandHandler))
+                .addCommand(new AddToInventoryHandler(productsCommandHandler))
+                .addCommand(new FindByIdHandler(productsDAO))
+                .addCommand(new FindRelatedProductsHandler(productsDAO))
+                .addCommand(new FindOutOfStockProductsHandler(productsDAO))
+                .addCommand(new FindByNameHandler(productsDAO))
                 .build();
 
         try {
