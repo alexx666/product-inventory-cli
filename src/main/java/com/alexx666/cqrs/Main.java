@@ -10,7 +10,6 @@ import com.alexx666.products.models.ProductRepository;
 import com.alexx666.products.models.ProductsDAO;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
@@ -46,10 +45,6 @@ public class Main {
                 .addCommand(new FindByNameHandler(productsDAO))
                 .build();
 
-        try {
-            commandParser.start();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        commandParser.start();
     }
 }

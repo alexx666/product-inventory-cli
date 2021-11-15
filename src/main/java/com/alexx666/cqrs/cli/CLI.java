@@ -1,7 +1,6 @@
 package com.alexx666.cqrs.cli;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,23 +28,18 @@ public class CLI {
         }
     }
 
-    public void start() throws IOException {
-        boolean shouldContinue = true;
-
+    public void start() {
         this.showHelp();
 
-        while (shouldContinue) {
+        // FIXME: temporary infinite loop to maintain data in memory
+        while (true) {
             try {
                 System.out.print("Action: ");
                 String action = reader.readLine().trim();
 
                 this.getCommandForAction(action).handle(reader);
             } catch (Exception error) {
-                error.printStackTrace();
-                System.out.println();
-            } finally {
-                System.out.print("Continue with a new action? (Y/n): ");
-                shouldContinue = !reader.readLine().equalsIgnoreCase("n");
+                error.printStackTrace(System.out);
             }
         }
     }
