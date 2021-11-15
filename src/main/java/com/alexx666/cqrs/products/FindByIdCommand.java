@@ -6,11 +6,11 @@ import com.alexx666.products.models.ProductsDAO;
 
 import java.io.BufferedReader;
 
-public class FindByIdHandler extends CLICommand {
+public class FindByIdCommand extends CLICommand {
 
     private ProductsDAO productsDAO;
 
-    public FindByIdHandler(ProductsDAO productsDAO) {
+    public FindByIdCommand(ProductsDAO productsDAO) {
         super("findById");
         this.productsDAO = productsDAO;
     }

@@ -8,11 +8,11 @@ import java.io.BufferedReader;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class FindByNameHandler extends CLICommand {
+public class FindByNameCommand extends CLICommand {
 
     private ProductsDAO productsDAO;
 
-    public FindByNameHandler(ProductsDAO productsDAO) {
+    public FindByNameCommand(ProductsDAO productsDAO) {
         super("findByName");
         this.productsDAO = productsDAO;
     }

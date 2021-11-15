@@ -36,13 +36,13 @@ public class Main {
 
         CLI cli = new CLI.Builder()
                 .input(reader)
-                .addCommand(new RateProductHandler(productsCommandHandler))
-                .addCommand(new AddNewProductHandler(productsCommandHandler))
-                .addCommand(new AddToInventoryHandler(productsCommandHandler))
-                .addCommand(new FindByIdHandler(productsDAO))
-                .addCommand(new FindRelatedProductsHandler(productsDAO))
-                .addCommand(new FindOutOfStockProductsHandler(productsDAO))
-                .addCommand(new FindByNameHandler(productsDAO))
+                .addCommand(new RateProductCommand(productsCommandHandler))
+                .addCommand(new AddNewProductCommand(productsCommandHandler))
+                .addCommand(new AddToInventoryCommand(productsCommandHandler))
+                .addCommand(new FindByIdCommand(productsDAO))
+                .addCommand(new FindRelatedProductsCommand(productsDAO))
+                .addCommand(new FindOutOfStockProductsCommand(productsDAO))
+                .addCommand(new FindByNameCommand(productsDAO))
                 .build();
 
         cli.showHelp();

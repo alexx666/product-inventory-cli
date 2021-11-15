@@ -8,11 +8,11 @@ import java.io.BufferedReader;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class FindRelatedProductsHandler extends CLICommand {
+public class FindRelatedProductsCommand extends CLICommand {
 
     private ProductsDAO productsDAO;
 
-    public FindRelatedProductsHandler(ProductsDAO productsDAO) {
+    public FindRelatedProductsCommand(ProductsDAO productsDAO) {
         super("findRelated");
         this.productsDAO = productsDAO;
     }

@@ -7,11 +7,11 @@ import com.alexx666.products.commands.AddNewProduct;
 
 import java.io.BufferedReader;
 
-public class AddNewProductHandler extends CLICommand {
+public class AddNewProductCommand extends CLICommand {
 
     private ProductsCommandHandler handlers;
 
-    public AddNewProductHandler(ProductsCommandHandler handlers) {
+    public AddNewProductCommand(ProductsCommandHandler handlers) {
         super("new");
 
         this.handlers = handlers;

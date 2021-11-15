@@ -6,11 +6,11 @@ import com.alexx666.products.commands.AddToInventory;
 
 import java.io.BufferedReader;
 
-public class AddToInventoryHandler extends CLICommand {
+public class AddToInventoryCommand extends CLICommand {
 
     private ProductsCommandHandler handlers;
 
-    public AddToInventoryHandler(ProductsCommandHandler handlers) {
+    public AddToInventoryCommand(ProductsCommandHandler handlers) {
         super("add");
         this.handlers = handlers;
     }

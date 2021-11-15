@@ -8,11 +8,11 @@ import com.alexx666.products.commands.RateProduct;
 import java.io.BufferedReader;
 
 // A run of the mill controller for a CLI context
-public class RateProductHandler extends CLICommand {
+public class RateProductCommand extends CLICommand {
 
     private ProductsCommandHandler handlers;
 
-    public RateProductHandler(ProductsCommandHandler handlers) {
+    public RateProductCommand(ProductsCommandHandler handlers) {
         super("rate");
         this.handlers = handlers;
     }
