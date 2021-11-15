@@ -40,9 +40,9 @@ public class Main {
                 .addCommand(new AddNewProductCommand(productsCommandHandler))
                 .addCommand(new AddToInventoryCommand(productsCommandHandler))
                 .addCommand(new FindByIdCommand(productsDAO))
-                .addCommand(new FindRelatedProductsCommand(productsDAO))
-                .addCommand(new FindOutOfStockProductsCommand(productsDAO))
-                .addCommand(new FindByNameCommand(productsDAO))
+                //.addCommand(new FindRelatedProductsCommand(productsDAO)) // TODO: activate when implemented
+                //.addCommand(new FindOutOfStockProductsCommand(productsDAO)) // TODO: activate when implemented
+                //.addCommand(new FindByNameCommand(productsDAO)) // TODO: activate when implemented
                 .build();
 
         cli.showHelp();

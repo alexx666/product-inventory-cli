@@ -58,6 +58,9 @@ public class CLI {
         }
 
         public CLI build() {
+            if (this.reader == null) {
+                throw new IllegalArgumentException("Input reader not provided!");
+            }
             return new CLI(this);
         }
     }
