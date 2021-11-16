@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public class FindOutOfStockProductsCommand extends CLICommand {
 
-    private ProductsDAO productsDAO;
+    private final ProductsDAO productsDAO;
 
     public FindOutOfStockProductsCommand(ProductsDAO productsDAO) {
         super("stock");

@@ -10,7 +10,7 @@ import java.io.BufferedReader;
 // A run of the mill controller for a CLI context
 public class RateProductCommand extends CLICommand {
 
-    private ProductsCommandHandler handlers;
+    private final ProductsCommandHandler handlers;
 
     public RateProductCommand(ProductsCommandHandler handlers) {
         super("rate");

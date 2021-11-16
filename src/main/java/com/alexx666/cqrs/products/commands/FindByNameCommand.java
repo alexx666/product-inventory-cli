@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public class FindByNameCommand extends CLICommand {
 
-    private ProductsDAO productsDAO;
+    private final ProductsDAO productsDAO;
 
     public FindByNameCommand(ProductsDAO productsDAO) {
         super("search");

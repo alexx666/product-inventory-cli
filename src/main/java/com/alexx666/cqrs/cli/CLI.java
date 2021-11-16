@@ -34,7 +34,7 @@ public class CLI {
     }
 
     public static final class Builder {
-        private Map<String, CLICommand> commands;
+        private final Map<String, CLICommand> commands;
         private BufferedReader reader;
 
         public Builder() {
@@ -42,7 +42,7 @@ public class CLI {
 
             this.addCommand(new CLICommand("help") {
                 @Override
-                public void handle(BufferedReader reader) throws Exception {
+                public void handle(BufferedReader reader) {
                     new HelpConsoleView().present(commands.entrySet());
                 }
             });

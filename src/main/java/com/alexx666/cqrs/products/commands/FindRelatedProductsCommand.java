@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public class FindRelatedProductsCommand extends CLICommand {
 
-    private ProductsDAO productsDAO;
+    private final ProductsDAO productsDAO;
 
     public FindRelatedProductsCommand(ProductsDAO productsDAO) {
         super("related");

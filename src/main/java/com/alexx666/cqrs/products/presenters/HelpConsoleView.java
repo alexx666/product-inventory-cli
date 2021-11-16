@@ -16,7 +16,7 @@ public class HelpConsoleView implements View<Entry<String, CLICommand>> {
     public void present(Collection<Entry<String, CLICommand>> objects) {
         System.out.println("Available actions:");
 
-        for (Entry entry: objects) {
+        for (Entry<String, CLICommand> entry: objects) {
             System.out.println("    - " + entry.getKey());
         }
     }

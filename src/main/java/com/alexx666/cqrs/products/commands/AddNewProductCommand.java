@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 
 public class AddNewProductCommand extends CLICommand {
 
-    private ProductsCommandHandler handlers;
+    private final ProductsCommandHandler handlers;
 
     public AddNewProductCommand(ProductsCommandHandler handlers) {
         super("new");

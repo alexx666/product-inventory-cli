@@ -8,7 +8,7 @@ import java.io.BufferedReader;
 
 public class AddToInventoryCommand extends CLICommand {
 
-    private ProductsCommandHandler handlers;
+    private final ProductsCommandHandler handlers;
 
     public AddToInventoryCommand(ProductsCommandHandler handlers) {
         super("add");

@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 
 public class FindByIdCommand extends CLICommand {
 
-    private ProductsDAO productsDAO;
+    private final ProductsDAO productsDAO;
 
     public FindByIdCommand(ProductsDAO productsDAO) {
         super("display");
