@@ -1,4 +1,4 @@
-package com.alexx666.cqrs.util;
+package com.alexx666.core.cleanarch;
 
 import java.util.Collection;
 

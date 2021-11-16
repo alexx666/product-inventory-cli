@@ -1,4 +1,4 @@
-package com.alexx666.cqrs.products;
+package com.alexx666.cqrs.products.commands;
 
 import com.alexx666.cqrs.cli.CLICommand;
 

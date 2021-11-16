@@ -1,7 +1,7 @@
-package com.alexx666.cqrs.products;
+package com.alexx666.cqrs.products.commands;
 
 import com.alexx666.cqrs.cli.CLICommand;
-import com.alexx666.cqrs.util.ProductDisplayConsoleView;
+import com.alexx666.cqrs.products.presenters.ProductDisplayConsoleView;
 import com.alexx666.products.models.ProductDisplay;
 import com.alexx666.products.models.ProductsDAO;
 

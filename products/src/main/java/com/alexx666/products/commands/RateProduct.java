@@ -1,6 +1,6 @@
 package com.alexx666.products.commands;
 
-import com.alexx666.core.Command;
+import com.alexx666.core.cqrs.Command;
 
 // In typescript these can be simple interfaces
 public class RateProduct extends Command {

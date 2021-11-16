@@ -1,4 +1,4 @@
-package com.alexx666.core;
+package com.alexx666.core.cqrs;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;

@@ -1,6 +1,6 @@
 package com.alexx666.products.infra;
 
-import com.alexx666.core.Hashing;
+import com.alexx666.core.cqrs.Hashing;
 
 import com.alexx666.products.models.*;
 

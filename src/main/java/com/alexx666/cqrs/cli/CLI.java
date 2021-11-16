@@ -1,6 +1,6 @@
 package com.alexx666.cqrs.cli;
 
-import com.alexx666.cqrs.util.HelpConsoleView;
+import com.alexx666.cqrs.products.presenters.HelpConsoleView;
 
 import java.io.BufferedReader;
 import java.util.HashMap;

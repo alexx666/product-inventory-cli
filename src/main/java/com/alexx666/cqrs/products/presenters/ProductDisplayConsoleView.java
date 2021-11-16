@@ -1,5 +1,6 @@
-package com.alexx666.cqrs.util;
+package com.alexx666.cqrs.products.presenters;
 
+import com.alexx666.core.cleanarch.View;
 import com.alexx666.products.models.ProductDisplay;
 
 import java.util.Collection;
