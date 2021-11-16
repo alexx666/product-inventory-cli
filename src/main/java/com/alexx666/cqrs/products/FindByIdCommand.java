@@ -11,7 +11,7 @@ public class FindByIdCommand extends CLICommand {
     private ProductsDAO productsDAO;
 
     public FindByIdCommand(ProductsDAO productsDAO) {
-        super("findById");
+        super("display");
         this.productsDAO = productsDAO;
     }
 

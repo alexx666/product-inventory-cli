@@ -7,15 +7,13 @@ public class AddNewProduct extends Command {
     private String name;
     private String description;
     private double price;
-    private int count;
 
-    public AddNewProduct(String name, String description, double price, int count) {
+    public AddNewProduct(String name, String description, double price) {
         super();
 
         this.name = name;
         this.description = description;
         this.price = price;
-        this.count = count;
     }
 
     public String getName() {
@@ -28,9 +26,5 @@ public class AddNewProduct extends Command {
 
     public double getPrice() {
         return price;
-    }
-
-    public int getCount() {
-        return count;
     }
 }

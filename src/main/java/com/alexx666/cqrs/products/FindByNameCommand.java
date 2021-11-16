@@ -13,7 +13,7 @@ public class FindByNameCommand extends CLICommand {
     private ProductsDAO productsDAO;
 
     public FindByNameCommand(ProductsDAO productsDAO) {
-        super("findByName");
+        super("search");
         this.productsDAO = productsDAO;
     }
 

@@ -6,7 +6,7 @@ public class Product {
     private String productId;
     private String productName; // TODO: V.O.
     private String description;
-    private double price; // TODO: V.O.
+    private Price price;
     private int itemsInStock;
 
     private Product(Builder builder) {
@@ -25,12 +25,16 @@ public class Product {
         this.productId = id;
     }
 
+    public boolean isNew() {
+        return this.productId == null;
+    }
+
     public String getProductName() {
         return productName;
     }
 
     public double getPrice() {
-        return price;
+        return price.getValue();
     }
 
     public String getDescription() {
@@ -54,8 +58,12 @@ public class Product {
         private String productId;
         private String productName; // TODO: V.O.
         private String description;
-        private double price; // TODO: V.O.
+        private Price price;
         private int itemsInStock;
+
+        public Builder() {
+            this.itemsInStock = 0;
+        }
 
         public Builder identifier(String productId) {
             this.productId = productId;
@@ -73,7 +81,7 @@ public class Product {
         }
 
         public Builder price(double price) {
-            this.price = price; // TODO: convert to VO here
+            this.price = Price.create(price);
             return this;
         }
 

@@ -28,10 +28,7 @@ public class AddNewProductCommand extends CLICommand {
         System.out.print("Price: ");
         double price = Double.parseDouble(reader.readLine().trim());
 
-        System.out.print("Items in stock: ");
-        int count = Integer.parseInt(reader.readLine().trim());
-
-        AddNewProduct command = new AddNewProduct(productName, description, price, count);
+        AddNewProduct command = new AddNewProduct(productName, description, price);
         System.out.println("Executing request ID: " + command.getUUID());
 
         String productId = handlers.handle(command);

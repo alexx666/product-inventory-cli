@@ -30,7 +30,6 @@ public class ProductsCommandHandler {
                 .withName(command.getName())
                 .description(command.getDescription())
                 .price(command.getPrice())
-                .inStock(command.getCount())
                 .build();
 
         return this.repository.saveProduct(product);

@@ -55,6 +55,11 @@ public class ProductDisplay {
         private double userRating;
         private int totalRatings;
 
+        public Builder() {
+            this.totalRatings = 0;
+            this.userRating = 0.0;
+        }
+
         public Builder identifier(String id) {
             this.id = id;
             return this;

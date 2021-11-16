@@ -13,7 +13,7 @@ public class FindRelatedProductsCommand extends CLICommand {
     private ProductsDAO productsDAO;
 
     public FindRelatedProductsCommand(ProductsDAO productsDAO) {
-        super("findRelated");
+        super("related");
         this.productsDAO = productsDAO;
     }
 

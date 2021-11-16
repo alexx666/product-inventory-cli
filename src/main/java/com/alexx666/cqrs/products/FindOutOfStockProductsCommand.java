@@ -13,7 +13,7 @@ public class FindOutOfStockProductsCommand extends CLICommand {
     private ProductsDAO productsDAO;
 
     public FindOutOfStockProductsCommand(ProductsDAO productsDAO) {
-        super("findOutOfStock");
+        super("stock");
         this.productsDAO = productsDAO;
     }
 

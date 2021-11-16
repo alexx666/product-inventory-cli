@@ -18,35 +18,37 @@ public class InMemoryProductRepository implements ProductRepository {
 
     @Override
     public Product find(String productId) throws Exception {
-        Product product = this.products.get(productId);
+        boolean exists = this.products.containsKey(productId);
 
-        if (product == null) {
+        if (!exists) {
             throw new Exception("Product (" + productId + ") not found!");
         }
 
-        return product;
+        return this.products.get(productId);
     }
 
     @Override
     public String saveProduct(Product product) {
-        boolean isNew = product.getProductId() == null;
-
-        String productId = isNew ? Hashing.getRandomHash() : product.getProductId();
+        String productId = product.isNew() ? Hashing.getRandomHash() : product.getProductId();
 
         product.setProductId(productId);
 
         this.products.put(productId, product);
-
-        if (isNew) {
-            this.userRatings.put(productId, new HashMap<>());
-        }
 
         return productId;
     }
 
     @Override
     public void saveUserRating(UserRating userRating) {
-        Map<String, Integer> productRatings = this.userRatings.get(userRating.getProductId());
+        String productId = userRating.getProductId();
+
+        boolean hasNotBeenRated = !this.userRatings.containsKey(productId);
+
+        if (hasNotBeenRated) {
+            this.userRatings.put(productId, new HashMap<>());
+        }
+
+        Map<String, Integer> productRatings = this.userRatings.get(productId);
         productRatings.put(userRating.getUserId(), userRating.getRating().getValue());
     }
 

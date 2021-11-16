@@ -29,20 +29,24 @@ public class InMemoryProductDAO implements ProductsDAO {
 
         System.out.println("Items in stock: " + product.getItemsInStock());
 
-        boolean outOfStock = product.getItemsInStock() == 0;
-        double rating = calculateRatingForProduct(productId);
-        int totalRatings = this.userRatings.get(productId).size();
-
-        ProductDisplay productDisplay = new ProductDisplay.Builder()
+        ProductDisplay.Builder productDisplayBuilder = new ProductDisplay.Builder()
                 .identifier(product.getProductId())
                 .name(product.getProductName())
                 .description(product.getDescription())
-                .rating(rating)
-                .outOfStock(outOfStock)
-                .totalRatings(totalRatings)
-                .price(product.getPrice()).build();
+                .price(product.getPrice())
+                .outOfStock(product.getItemsInStock() == 0);
 
-        return productDisplay;
+        if (!this.userRatings.containsKey(productId)) {
+            return productDisplayBuilder.build();
+        }
+
+        double rating = calculateRatingForProduct(productId);
+        int totalRatings = this.userRatings.get(productId).size();
+
+        return productDisplayBuilder
+                .rating(rating)
+                .totalRatings(totalRatings)
+                .build();
     }
 
     // TODO: implement
