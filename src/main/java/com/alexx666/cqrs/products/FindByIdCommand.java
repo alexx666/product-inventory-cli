@@ -1,6 +1,7 @@
 package com.alexx666.cqrs.products;
 
 import com.alexx666.cqrs.cli.CLICommand;
+import com.alexx666.cqrs.util.ProductDisplayConsoleView;
 import com.alexx666.products.models.ProductDisplay;
 import com.alexx666.products.models.ProductsDAO;
 
@@ -22,10 +23,6 @@ public class FindByIdCommand extends CLICommand {
 
         ProductDisplay productDisplay = this.productsDAO.findById(productId);
 
-        System.out.println("    ID: " + productDisplay.getId());
-        System.out.println("    Name: " + productDisplay.getName());
-        System.out.println("    Description: " + productDisplay.getDescription());
-        System.out.println("    Rating " + productDisplay.getUserRating() + " out of " + productDisplay.totalRatings() + " user(s)");
-        System.out.println("    Price: " + productDisplay.getUnitPrice() + "$ per unit " + (productDisplay.isOutOfStock() ? "(out of stock)" : "(in stock)"));
+        new ProductDisplayConsoleView().present(productDisplay);
     }
 }

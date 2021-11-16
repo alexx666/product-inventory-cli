@@ -5,6 +5,7 @@ import com.alexx666.products.models.ProductDisplay;
 import com.alexx666.products.models.ProductInventory;
 import com.alexx666.products.models.ProductsDAO;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,10 +56,24 @@ public class InMemoryProductDAO implements ProductsDAO {
         return null;
     }
 
-    // TODO: implement
     @Override
     public Collection<ProductInventory> findOutOfStockProducts() {
-        return null;
+        Collection<ProductInventory> outOfStockItems = new ArrayList<>();
+
+        for (Product product: this.products.values()) {
+            if (product.getItemsInStock() > 0) {
+                continue;
+            }
+
+            ProductInventory productInventory = new ProductInventory(
+                    product.getProductId(),
+                    product.getProductName(),
+                    product.getItemsInStock());
+
+            outOfStockItems.add(productInventory);
+        }
+
+        return outOfStockItems;
     }
 
     // TODO: implement
@@ -83,7 +98,7 @@ public class InMemoryProductDAO implements ProductsDAO {
         return (double) Math.round(totalRating / productRatings.size() * 10) / 10;
     }
 
-    public static class Builder {
+    public static final class Builder {
         private Map<String, Product> products;
         private Map<String, Map<String, Integer>> userRatings;
 

@@ -41,11 +41,9 @@ public class Main {
                 .addCommand(new AddToInventoryCommand(productsCommandHandler))
                 .addCommand(new FindByIdCommand(productsDAO))
                 //.addCommand(new FindRelatedProductsCommand(productsDAO)) // TODO: activate when implemented
-                //.addCommand(new FindOutOfStockProductsCommand(productsDAO)) // TODO: activate when implemented
+                .addCommand(new FindOutOfStockProductsCommand(productsDAO))
                 //.addCommand(new FindByNameCommand(productsDAO)) // TODO: activate when implemented
                 .build();
-
-        cli.showHelp();
 
         // FIXME: temporary infinite loop to maintain data in memory
         while (true) {

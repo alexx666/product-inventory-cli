@@ -52,7 +52,7 @@ public class InMemoryProductRepository implements ProductRepository {
         productRatings.put(userRating.getUserId(), userRating.getRating().getValue());
     }
 
-    public static class Builder {
+    public static final class Builder {
         private Map<String, Product> products;
         private Map<String, Map<String, Integer>> userRatings;
 

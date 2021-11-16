@@ -54,7 +54,7 @@ public class Product {
         return new UserRating(this.productId, userId, rating);
     }
 
-    public static class Builder {
+    public static final class Builder {
         private String productId;
         private String productName; // TODO: V.O.
         private String description;

@@ -46,7 +46,7 @@ public class ProductDisplay {
 
     public int totalRatings() { return totalRatings; }
 
-    public static class Builder {
+    public static final class Builder {
         private String id;
         private String name;
         private String description;

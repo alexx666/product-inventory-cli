@@ -1,5 +1,7 @@
 package com.alexx666.cqrs.cli;
 
+import com.alexx666.cqrs.util.HelpConsoleView;
+
 import java.io.BufferedReader;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,14 +22,6 @@ public class CLI {
         return this.commands.get(action);
     }
 
-    public void showHelp() {
-        System.out.println("Available actions:");
-
-        for (String action: this.commands.keySet()) {
-            System.out.println("    - " + action);
-        }
-    }
-
     public void run() {
         try {
             System.out.print("Action: ");
@@ -39,12 +33,19 @@ public class CLI {
         }
     }
 
-    public static class Builder {
+    public static final class Builder {
         private Map<String, CLICommand> commands;
         private BufferedReader reader;
 
         public Builder() {
             this.commands = new HashMap<>();
+
+            this.addCommand(new CLICommand("help") {
+                @Override
+                public void handle(BufferedReader reader) throws Exception {
+                    new HelpConsoleView().present(commands.entrySet());
+                }
+            });
         }
 
         public Builder input(BufferedReader reader) {
