@@ -55,6 +55,9 @@ public class ProductDisplay {
         private double userRating;
         private int totalRatings;
 
+        /**
+         * {@link ProductDisplay} builder
+         */
         public Builder() {
             this.totalRatings = 0;
             this.userRating = 0.0;

@@ -1,5 +1,7 @@
 package com.alexx666.products.models;
 
+// Entity identified by productId and userId
+// Could be saved to NoSQL database
 public class UserRating {
 
     private final String productId;

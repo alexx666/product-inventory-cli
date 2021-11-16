@@ -102,6 +102,9 @@ public class InMemoryProductDAO implements ProductsDAO {
         private Map<String, Product> products;
         private Map<String, Map<String, Integer>> userRatings;
 
+        /**
+         * {@link InMemoryProductDAO} builder
+         */
         public Builder() {
             this.products = new HashMap<>();
             this.userRatings = new HashMap<>();

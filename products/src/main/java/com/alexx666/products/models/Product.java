@@ -1,6 +1,6 @@
 package com.alexx666.products.models;
 
-// DDD Entity
+// DDD Root Entity for the aggregate
 public class Product {
 
     private String productId;
@@ -59,6 +59,9 @@ public class Product {
         private Price price;
         private final int itemsInStock;
 
+        /**
+         * {@link Product} builder
+         */
         public Builder() {
             this.itemsInStock = 0;
         }

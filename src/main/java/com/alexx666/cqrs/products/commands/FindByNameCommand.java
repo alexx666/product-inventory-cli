@@ -1,6 +1,7 @@
 package com.alexx666.cqrs.products.commands;
 
 import com.alexx666.cqrs.cli.CLICommand;
+import com.alexx666.cqrs.products.presenters.ProductDisplayConsoleView;
 import com.alexx666.products.models.ProductDisplay;
 import com.alexx666.products.models.ProductsDAO;
 
@@ -24,6 +25,8 @@ public class FindByNameCommand extends CLICommand {
 
         Collection<ProductDisplay> results = this.productsDAO.findByName(name);
 
-        System.out.println("Matching results: " + Arrays.toString(results.toArray()));
+        System.out.println("Matching results:");
+
+        new ProductDisplayConsoleView().present(results);
     }
 }

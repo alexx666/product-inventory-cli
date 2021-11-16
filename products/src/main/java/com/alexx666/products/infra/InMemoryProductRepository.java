@@ -56,6 +56,9 @@ public class InMemoryProductRepository implements ProductRepository {
         private Map<String, Product> products;
         private Map<String, Map<String, Integer>> userRatings;
 
+        /**
+         * {@link InMemoryProductRepository} builder
+         */
         public Builder() {
             this.products = new HashMap<>();
             this.userRatings = new HashMap<>();
