@@ -1,4 +1,4 @@
-package com.alexx666.invcli.cli;
+package com.alexx666.incli.cli;
 
 import java.io.BufferedReader;
 

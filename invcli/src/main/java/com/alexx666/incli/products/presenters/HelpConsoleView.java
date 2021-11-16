@@ -1,7 +1,7 @@
-package com.alexx666.invcli.products.presenters;
+package com.alexx666.incli.products.presenters;
 
 import com.alexx666.core.cleanarch.View;
-import com.alexx666.invcli.cli.CLICommand;
+import com.alexx666.incli.cli.CLICommand;
 
 import java.util.Collection;
 import java.util.Map.Entry;

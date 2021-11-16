@@ -7,13 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
-        <module name="product-inventory-cli" />
+        <module name="invcli" />
         <module name="products" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cli" target="16" />
       <module name="core" target="16" />
+      <module name="invcli" target="16" />
       <module name="product-inventory-cli" target="16" />
       <module name="products" target="16" />
     </bytecodeTargetLevel>

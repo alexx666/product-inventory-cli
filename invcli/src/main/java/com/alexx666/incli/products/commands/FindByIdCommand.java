@@ -1,7 +1,7 @@
-package com.alexx666.invcli.products.commands;
+package com.alexx666.incli.products.commands;
 
-import com.alexx666.invcli.cli.CLICommand;
-import com.alexx666.invcli.products.presenters.ProductDisplayConsoleView;
+import com.alexx666.incli.cli.CLICommand;
+import com.alexx666.incli.products.presenters.ProductDisplayConsoleView;
 import com.alexx666.products.models.ProductDisplay;
 import com.alexx666.products.models.ProductsDAO;
 

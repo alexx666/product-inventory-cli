@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/product-inventory-cli.iml" filepath="$PROJECT_DIR$/product-inventory-cli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/invcli/invcli.iml" filepath="$PROJECT_DIR$/invcli/invcli.iml" />
       <module fileurl="file://$PROJECT_DIR$/products/products.iml" filepath="$PROJECT_DIR$/products/products.iml" />
     </modules>
   </component>

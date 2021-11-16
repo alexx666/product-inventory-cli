@@ -1,6 +1,6 @@
-package com.alexx666.invcli.cli;
+package com.alexx666.incli.cli;
 
-import com.alexx666.invcli.products.presenters.HelpConsoleView;
+import com.alexx666.incli.products.presenters.HelpConsoleView;
 
 import java.io.BufferedReader;
 import java.util.HashMap;

@@ -1,6 +1,6 @@
-package com.alexx666.invcli.products.commands;
+package com.alexx666.incli.products.commands;
 
-import com.alexx666.invcli.cli.CLICommand;
+import com.alexx666.incli.cli.CLICommand;
 
 import com.alexx666.products.ProductsCommandHandler;
 import com.alexx666.products.commands.AddNewProduct;
