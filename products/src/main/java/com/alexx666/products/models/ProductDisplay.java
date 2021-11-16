@@ -2,16 +2,16 @@ package com.alexx666.products.models;
 
 // DTO object
 public class ProductDisplay {
-    private String id;
-    private String name;
-    private String description;
-    private double unitPrice;
-    private boolean isOutOfStock;
-    private double userRating;
-    private int totalRatings;
+    private final String id;
+    private final String name;
+    private final String description;
+    private final double unitPrice;
+    private final boolean isOutOfStock;
+    private final double userRating;
+    private final int totalRatings;
 
     private ProductDisplay(Builder builder) {
-        this.id = builder.id;;
+        this.id = builder.id;
         this.name = builder.name;
         this.description = builder.description;
         this.unitPrice = builder.unitPrice;

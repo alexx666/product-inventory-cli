@@ -4,8 +4,8 @@ import com.alexx666.core.cqrs.Command;
 
 public class AddToInventory extends Command {
 
-    private String productId;
-    private int numberOfItems;
+    private final String productId;
+    private final int numberOfItems;
 
     public AddToInventory(String productId, int numberOfItems) {
         super();

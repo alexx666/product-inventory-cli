@@ -4,13 +4,12 @@ package com.alexx666.products.models;
 public class Product {
 
     private String productId;
-    private String productName; // TODO: V.O.
-    private String description;
-    private Price price;
+    private final String productName; // TODO: V.O.
+    private final String description;
+    private final Price price;
     private int itemsInStock;
 
     private Product(Builder builder) {
-        this.productId = builder.productId;;
         this.productName = builder.productName;
         this.description = builder.description;
         this.price = builder.price;
@@ -55,19 +54,13 @@ public class Product {
     }
 
     public static final class Builder {
-        private String productId;
         private String productName; // TODO: V.O.
         private String description;
         private Price price;
-        private int itemsInStock;
+        private final int itemsInStock;
 
         public Builder() {
             this.itemsInStock = 0;
-        }
-
-        public Builder identifier(String productId) {
-            this.productId = productId;
-            return this;
         }
 
         public Builder withName(String productName) {
@@ -82,11 +75,6 @@ public class Product {
 
         public Builder price(double price) {
             this.price = Price.create(price);
-            return this;
-        }
-
-        public Builder inStock(int count) {
-            this.itemsInStock = count;
             return this;
         }
 

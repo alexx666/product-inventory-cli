@@ -2,9 +2,9 @@ package com.alexx666.products.models;
 
 public class UserRating {
 
-    private String productId;
-    private String userId;
-    private Rating rating;
+    private final String productId;
+    private final String userId;
+    private final Rating rating;
 
     public UserRating(String productId, String userId, int rating) {
         this.productId = productId;

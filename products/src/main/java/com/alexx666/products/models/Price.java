@@ -11,7 +11,7 @@ public class Price {
         return new Price(value);
     }
 
-    private double value;
+    private final double value;
 
     private Price(double value) {
         this.value = value;

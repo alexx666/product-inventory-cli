@@ -11,7 +11,7 @@ public class Rating {
         return new Rating(value);
     }
 
-    private int value;
+    private final int value;
 
     private Rating(int value) {
         this.value = value;

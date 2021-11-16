@@ -8,7 +8,7 @@ import com.alexx666.products.models.*;
 
 public class ProductsCommandHandler {
 
-    private ProductRepository repository;
+    private final ProductRepository repository;
 
     public ProductsCommandHandler(ProductRepository repository) {
         this.repository = repository;

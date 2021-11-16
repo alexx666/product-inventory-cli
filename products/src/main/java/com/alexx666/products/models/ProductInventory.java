@@ -2,9 +2,9 @@ package com.alexx666.products.models;
 
 // DTO object
 public class ProductInventory {
-    private String productId;
-    private String productName;
-    private int currentStock;
+    private final String productId;
+    private final String productName;
+    private final int currentStock;
 
     public ProductInventory(String productId, String productName, int currentStock) {
         this.productId = productId;

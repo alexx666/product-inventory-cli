@@ -5,9 +5,9 @@ import com.alexx666.core.cqrs.Command;
 // In typescript these can be simple interfaces
 public class RateProduct extends Command {
 
-    private String productId;
-    private String userId;
-    private int rating;
+    private final String productId;
+    private final String userId;
+    private final int rating;
 
     public RateProduct(String productId, String userId, int rating) {
         super();

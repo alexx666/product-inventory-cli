@@ -4,9 +4,9 @@ import com.alexx666.core.cqrs.Command;
 
 public class AddNewProduct extends Command {
 
-    private String name;
-    private String description;
-    private double price;
+    private final String name;
+    private final String description;
+    private final double price;
 
     public AddNewProduct(String name, String description, double price) {
         super();

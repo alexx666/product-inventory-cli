@@ -89,7 +89,7 @@ public class InMemoryProductDAO implements ProductsDAO {
             return 0;
         }
 
-        int totalRating = 0;
+        double totalRating = 0;
 
         for (Integer rating: productRatings.values()) {
             totalRating += rating;
