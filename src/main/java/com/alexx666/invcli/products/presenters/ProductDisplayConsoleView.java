@@ -1,4 +1,4 @@
-package com.alexx666.cqrs.products.presenters;
+package com.alexx666.invcli.products.presenters;
 
 import com.alexx666.core.cleanarch.View;
 import com.alexx666.products.models.ProductDisplay;

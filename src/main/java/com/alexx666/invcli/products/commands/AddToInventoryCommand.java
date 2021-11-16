@@ -1,6 +1,6 @@
-package com.alexx666.cqrs.products.commands;
+package com.alexx666.invcli.products.commands;
 
-import com.alexx666.cqrs.cli.CLICommand;
+import com.alexx666.invcli.cli.CLICommand;
 import com.alexx666.products.ProductsCommandHandler;
 import com.alexx666.products.commands.AddToInventory;
 

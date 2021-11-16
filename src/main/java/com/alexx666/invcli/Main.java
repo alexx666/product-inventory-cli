@@ -1,7 +1,7 @@
-package com.alexx666.cqrs;
+package com.alexx666.invcli;
 
-import com.alexx666.cqrs.cli.CLI;
-import com.alexx666.cqrs.products.commands.*;
+import com.alexx666.invcli.cli.CLI;
+import com.alexx666.invcli.products.commands.*;
 import com.alexx666.products.ProductsCommandHandler;
 import com.alexx666.products.infra.InMemoryProductDAO;
 import com.alexx666.products.infra.InMemoryProductRepository;
