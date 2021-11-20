@@ -3,7 +3,7 @@ package com.alexx666.products.infra;
 import com.alexx666.products.models.Product;
 import com.alexx666.products.models.ProductDisplay;
 import com.alexx666.products.models.ProductInventory;
-import com.alexx666.products.models.ProductsDAO;
+import com.alexx666.products.data.ProductsDAO;
 
 import java.util.*;
 
@@ -24,8 +24,6 @@ public class InMemoryProductDAO implements ProductsDAO {
         if (product == null) {
             throw new Exception("Product (" + productId + ") not found!");
         }
-
-        System.out.println("Items in stock: " + product.getItemsInStock());
 
         return from(product, this.userRatings.get(productId));
     }

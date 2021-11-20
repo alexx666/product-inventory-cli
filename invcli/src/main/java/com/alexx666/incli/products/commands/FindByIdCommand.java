@@ -3,7 +3,7 @@ package com.alexx666.incli.products.commands;
 import com.alexx666.incli.cli.CLICommand;
 import com.alexx666.incli.products.presenters.ProductDisplayConsoleView;
 import com.alexx666.products.models.ProductDisplay;
-import com.alexx666.products.models.ProductsDAO;
+import com.alexx666.products.data.ProductsDAO;
 
 import java.io.BufferedReader;
 

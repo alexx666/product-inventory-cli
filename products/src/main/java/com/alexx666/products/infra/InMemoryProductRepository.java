@@ -2,6 +2,7 @@ package com.alexx666.products.infra;
 
 import com.alexx666.core.cqrs.Hashing;
 
+import com.alexx666.products.data.ProductRepository;
 import com.alexx666.products.models.*;
 
 import java.util.*;

@@ -6,8 +6,8 @@ import com.alexx666.products.ProductsCommandHandler;
 import com.alexx666.products.infra.InMemoryProductDAO;
 import com.alexx666.products.infra.InMemoryProductRepository;
 import com.alexx666.products.models.Product;
-import com.alexx666.products.models.ProductRepository;
-import com.alexx666.products.models.ProductsDAO;
+import com.alexx666.products.data.ProductRepository;
+import com.alexx666.products.data.ProductsDAO;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

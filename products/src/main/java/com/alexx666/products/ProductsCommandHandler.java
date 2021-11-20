@@ -4,6 +4,7 @@ import com.alexx666.products.commands.AddNewProduct;
 import com.alexx666.products.commands.AddToInventory;
 import com.alexx666.products.commands.RateProduct;
 
+import com.alexx666.products.data.ProductRepository;
 import com.alexx666.products.models.*;
 
 public class ProductsCommandHandler {

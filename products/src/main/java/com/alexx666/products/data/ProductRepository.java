@@ -1,4 +1,7 @@
-package com.alexx666.products.models;
+package com.alexx666.products.data;
+
+import com.alexx666.products.models.Product;
+import com.alexx666.products.models.UserRating;
 
 public interface ProductRepository {
     /**
