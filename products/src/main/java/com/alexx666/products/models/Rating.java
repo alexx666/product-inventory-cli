@@ -1,7 +1,7 @@
 package com.alexx666.products.models;
 
 // Value Object
-public class Rating {
+public final class Rating {
 
     public static Rating create(int value) throws IllegalArgumentException {
         if (value > 5 || value < 1) {

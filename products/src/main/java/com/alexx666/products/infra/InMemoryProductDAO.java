@@ -5,10 +5,7 @@ import com.alexx666.products.models.ProductDisplay;
 import com.alexx666.products.models.ProductInventory;
 import com.alexx666.products.models.ProductsDAO;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class InMemoryProductDAO implements ProductsDAO {
 
@@ -30,30 +27,22 @@ public class InMemoryProductDAO implements ProductsDAO {
 
         System.out.println("Items in stock: " + product.getItemsInStock());
 
-        ProductDisplay.Builder productDisplayBuilder = new ProductDisplay.Builder()
-                .identifier(product.getProductId())
-                .name(product.getProductName())
-                .description(product.getDescription())
-                .price(product.getPrice())
-                .outOfStock(product.getItemsInStock() == 0);
-
-        if (!this.userRatings.containsKey(productId)) {
-            return productDisplayBuilder.build();
-        }
-
-        double rating = calculateRatingForProduct(productId);
-        int totalRatings = this.userRatings.get(productId).size();
-
-        return productDisplayBuilder
-                .rating(rating)
-                .totalRatings(totalRatings)
-                .build();
+        return from(product, this.userRatings.get(productId));
     }
 
-    // TODO: implement
     @Override
     public Collection<ProductDisplay> findByName(String name) {
-        return null;
+        Collection<ProductDisplay> matchingProducts = new ArrayList<>();
+
+        for (Product product: this.products.values()) {
+            if (!product.getProductName().contains(name)) {
+                continue;
+            }
+
+            matchingProducts.add(from(product, userRatings.get(product.getProductId())));
+        }
+
+        return  matchingProducts;
     }
 
     @Override
@@ -123,5 +112,27 @@ public class InMemoryProductDAO implements ProductsDAO {
         public InMemoryProductDAO build() {
             return new InMemoryProductDAO(this);
         }
+    }
+
+    private ProductDisplay from(Product product, Map<String, Integer> ratings) {
+        ProductDisplay.Builder productDisplayBuilder = new ProductDisplay.Builder()
+                .identifier(product.getProductId())
+                .name(product.getProductName())
+                .description(product.getDescription())
+                .price(product.getPrice())
+                .outOfStock(product.getItemsInStock() == 0);
+
+        if (ratings == null || ratings.isEmpty()) {
+            return productDisplayBuilder.build();
+        }
+
+        String productId = product.getProductId();
+        double rating = calculateRatingForProduct(productId);
+        int totalRatings = ratings.size();
+
+        return productDisplayBuilder
+                .rating(rating)
+                .totalRatings(totalRatings)
+                .build();
     }
 }

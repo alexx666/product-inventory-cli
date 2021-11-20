@@ -1,7 +1,7 @@
 package com.alexx666.products.models;
 
 // Value Object
-public class Price {
+public final class Price {
 
     public static Price create(double value) throws IllegalArgumentException {
         if (value < 0.00) {
