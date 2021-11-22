@@ -4,7 +4,7 @@ package com.alexx666.products.models;
 public class Product {
 
     private String productId;
-    private final String productName; // TODO: V.O.
+    private final Name productName;
     private final String description;
     private final Price price;
     private int itemsInStock;
@@ -28,12 +28,12 @@ public class Product {
         return this.productId == null;
     }
 
-    public String getProductName() {
+    public Name getProductName() {
         return productName;
     }
 
-    public double getPrice() {
-        return price.getValue();
+    public Price getPrice() {
+        return price;
     }
 
     public String getDescription() {
@@ -54,7 +54,7 @@ public class Product {
     }
 
     public static final class Builder {
-        private String productName; // TODO: V.O.
+        private Name productName;
         private String description;
         private Price price;
         private final int itemsInStock;
@@ -66,8 +66,8 @@ public class Product {
             this.itemsInStock = 0;
         }
 
-        public Builder withName(String productName) {
-            this.productName = productName; // TODO: convert to VO here
+        public Builder withName(Name productName) {
+            this.productName = productName;
             return this;
         }
 
@@ -76,8 +76,8 @@ public class Product {
             return this;
         }
 
-        public Builder price(double price) {
-            this.price = Price.create(price);
+        public Builder price(Price price) {
+            this.price = price;
             return this;
         }
 

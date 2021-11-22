@@ -1,4 +1,4 @@
-package com.alexx666.products.infra;
+package com.alexx666.products.infra.mem;
 
 import com.alexx666.core.cqrs.Hashing;
 

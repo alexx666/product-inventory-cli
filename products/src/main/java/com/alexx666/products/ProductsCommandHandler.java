@@ -28,9 +28,9 @@ public class ProductsCommandHandler {
     // This can be done emitting a domain event too
     public String handle(AddNewProduct command) {
         Product product = new Product.Builder()
-                .withName(command.getName())
+                .withName(Name.create(command.getName()))
                 .description(command.getDescription())
-                .price(command.getPrice())
+                .price(Price.create(command.getPrice()))
                 .build();
 
         return this.repository.saveProduct(product);

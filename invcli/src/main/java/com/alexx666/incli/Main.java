@@ -3,8 +3,8 @@ package com.alexx666.incli;
 import com.alexx666.incli.cli.CLI;
 import com.alexx666.incli.products.commands.*;
 import com.alexx666.products.ProductsCommandHandler;
-import com.alexx666.products.infra.InMemoryProductDAO;
-import com.alexx666.products.infra.InMemoryProductRepository;
+import com.alexx666.products.infra.mem.InMemoryProductDAO;
+import com.alexx666.products.infra.mem.InMemoryProductRepository;
 import com.alexx666.products.models.Product;
 import com.alexx666.products.data.ProductRepository;
 import com.alexx666.products.data.ProductsDAO;
@@ -17,8 +17,6 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
         Map<String, Product> productData = new HashMap<>();
         Map<String, Map<String, Integer>> userRatingsData = new HashMap<>();
 
@@ -35,7 +33,7 @@ public class Main {
         ProductsCommandHandler productsCommandHandler = new ProductsCommandHandler(productRepository);
 
         CLI cli = new CLI.Builder()
-                .input(reader)
+                .input(new BufferedReader(new InputStreamReader(System.in)))
                 .addCommand(new RateProductCommand(productsCommandHandler))
                 .addCommand(new AddNewProductCommand(productsCommandHandler))
                 .addCommand(new AddToInventoryCommand(productsCommandHandler))

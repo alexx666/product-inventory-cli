@@ -1,8 +1,6 @@
-package com.alexx666.products.infra;
+package com.alexx666.products.infra.mem;
 
-import com.alexx666.products.models.Product;
-import com.alexx666.products.models.ProductDisplay;
-import com.alexx666.products.models.ProductInventory;
+import com.alexx666.products.models.*;
 import com.alexx666.products.data.ProductsDAO;
 
 import java.util.*;
@@ -33,7 +31,7 @@ public class InMemoryProductDAO implements ProductsDAO {
         Collection<ProductDisplay> matchingProducts = new ArrayList<>();
 
         for (Product product: this.products.values()) {
-            if (!product.getProductName().contains(name)) {
+            if (!product.getProductName().getValue().contains(name)) {
                 continue;
             }
 
@@ -54,7 +52,7 @@ public class InMemoryProductDAO implements ProductsDAO {
 
             ProductInventory productInventory = new ProductInventory(
                     product.getProductId(),
-                    product.getProductName(),
+                    product.getProductName().getValue(),
                     product.getItemsInStock());
 
             outOfStockItems.add(productInventory);
@@ -115,9 +113,9 @@ public class InMemoryProductDAO implements ProductsDAO {
     private ProductDisplay from(Product product, Map<String, Integer> ratings) {
         ProductDisplay.Builder productDisplayBuilder = new ProductDisplay.Builder()
                 .identifier(product.getProductId())
-                .name(product.getProductName())
+                .name(product.getProductName().getValue())
                 .description(product.getDescription())
-                .price(product.getPrice())
+                .price(product.getPrice().getValue())
                 .outOfStock(product.getItemsInStock() == 0);
 
         if (ratings == null || ratings.isEmpty()) {
